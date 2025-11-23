@@ -1,0 +1,110 @@
+@import './reset.css';
+
+/* font 설정 */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-display: swap;
+  src: local('Pretendard Black'),
+    url('fonts/Pretendard-Black.woff2') format('woff2'),
+    url('fonts/Pretendard-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-display: swap;
+  src: local('Pretendard ExtraBold'),
+    url('fonts/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('fonts/Pretendard-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Pretendard Bold'),
+    url('fonts/Pretendard-Bold.woff2') format('woff2'),
+    url('fonts/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: local('Pretendard SemiBold'),
+    url('fonts/Pretendard-SemiBold.woff2') format('woff2'),
+    url('fonts/Pretendard-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src: local('Pretendard Medium'),
+    url('fonts/Pretendard-Medium.woff2') format('woff2'),
+    url('fonts/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Pretendard Regular'),
+    url('fonts/Pretendard-Regular.woff2') format('woff2'),
+    url('fonts/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  src: local('Montserrat Black'),
+    url('fonts/Montserrat-Black.woff2') format('woff2'),
+    url('fonts/Montserrat-Black.woff') format('woff');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 800;
+  src: local('Montserrat ExtraBold'),
+    url('fonts/Montserrat-ExtraBold.woff2') format('woff2'),
+    url('fonts/Montserrat-ExtraBold.woff') format('woff');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  src: local('Montserrat Bold'),
+    url('fonts/Montserrat-Bold.woff2') format('woff2'),
+    url('fonts/Montserrat-Bold.woff') format('woff');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  src: local('Montserrat SemiBold'),
+    url('fonts/Montserrat-SemiBold.woff2') format('woff2'),
+    url('fonts/Montserrat-SemiBold.woff') format('woff');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  src: local('Montserrat Medium'),
+    url('fonts/Montserrat-Medium.woff2') format('woff2'),
+    url('fonts/Montserrat-Medium.woff') format('woff');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  src: local('Montserrat Regular'),
+    url('fonts/Montserrat-Regular.woff2') format('woff2'),
+    url('fonts/Montserrat-Regular.woff') format('woff');
+  unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
+}
