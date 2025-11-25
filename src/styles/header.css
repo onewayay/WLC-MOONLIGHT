@@ -19,7 +19,7 @@
   height: 35px;
   text-indent: -9999px;
   overflow: hidden;
-  background: url(../public/assets/images/logo.png) no-repeat center center;
+  background: url(/assets/images/logo.png) no-repeat center center;
 }
 #header .tab {
   position: relative;
@@ -72,8 +72,7 @@
   #header .logo a {
     width: 187px;
     height: 23px;
-    background: url(../public/assets/images/mobile_logo.png) no-repeat center
-      center;
+    background: url(/assets/images/mobile_logo.png) no-repeat center center;
   }
   #header .tab {
     width: 20px;
@@ -105,6 +104,6 @@
 }
 @media only screen and (max-width: 500px) {
   #header {
-    padding: 0 25px;
+    padding: 0 20px;
   }
 }

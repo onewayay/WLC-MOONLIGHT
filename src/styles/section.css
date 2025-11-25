@@ -15,6 +15,18 @@
   justify-content: space-between;
 }
 
+pre {
+  font-family: 'Montserrat', 'Pretendard';
+  margin: 0 0 10px;
+  white-space: pre-wrap;
+  font-size: 1.25em;
+  word-break: keep-all;
+}
+
+#section .text_area pre {
+  font-weight: 500;
+}
+
 #section .text_area .eng,
 #section .text_area .kor {
   position: relative;
@@ -25,8 +37,14 @@
 #section .text_area .kor.active {
   z-index: 1000;
 }
-#section .text_area .eng.active .title a span,
-#section .text_area .kor.active .title a span {
+
+#section .text_area .eng .title button span,
+#section .text_area .kor .title button span {
+  color: #000;
+}
+
+#section .text_area .eng.active .title button span,
+#section .text_area .kor.active .title button span {
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -39,7 +57,7 @@
   display: none;
   box-sizing: border-box;
 }
-#section .text_area .eng .title a {
+#section .text_area .eng .title button {
   position: absolute;
   left: 150px;
   top: 1px;
@@ -54,8 +72,8 @@
   font-weight: 600;
   background-color: #d9d9d9;
 }
-#section .text_area .eng .title a::before,
-#section .text_area .eng .title a::after {
+#section .text_area .eng .title button::before,
+#section .text_area .eng .title button::after {
   content: '';
   height: 40px;
   width: 20px;
@@ -66,7 +84,7 @@
   border-radius: 8px 8px 0 0;
   z-index: -1;
 }
-#section .text_area .eng .title a::before {
+#section .text_area .eng .title button::before {
   left: -10px;
   transform: skew(-25deg);
   border-radius: 0;
@@ -74,7 +92,7 @@
   border-top: 1px solid #000;
   box-sizing: border-box;
 }
-#section .text_area .eng .title a::after {
+#section .text_area .eng .title button::after {
   right: -10px;
   transform: skew(25deg);
   border-radius: 0;
@@ -82,7 +100,7 @@
   border-top: 1px solid #000;
   box-sizing: border-box;
 }
-#section .text_area .kor .title a {
+#section .text_area .kor .title button {
   position: absolute;
   left: 50px;
   top: 1px;
@@ -97,8 +115,8 @@
   font-weight: 600;
   background-color: #d9d9d9;
 }
-#section .text_area .kor .title a::before,
-#section .text_area .kor .title a::after {
+#section .text_area .kor .title button::before,
+#section .text_area .kor .title button::after {
   content: '';
   height: 40px;
   width: 20px;
@@ -109,7 +127,7 @@
   border-radius: 8px 8px 0 0;
   z-index: -1;
 }
-#section .text_area .kor .title a::before {
+#section .text_area .kor .title button::before {
   left: -10px;
   transform: skew(-25deg);
   border-radius: 0;
@@ -117,7 +135,7 @@
   border-top: 1px solid #000;
   box-sizing: border-box;
 }
-#section .text_area .kor .title a::after {
+#section .text_area .kor .title button::after {
   right: -10px;
   transform: skew(25deg);
   border-radius: 0;
@@ -177,28 +195,29 @@
   height: 25px;
   margin-top: 40px;
 }
-#section .pagination a.prev {
+#section .pagination button.prev {
   display: block;
   width: 40px;
   height: 14px;
-  background: url(../public/assets/images/left_arrow.png) no-repeat center
-    center;
+  background: url(/assets/images/left_arrow.png) no-repeat center center;
 }
-#section .pagination a.next {
+#section .pagination button.next {
   display: block;
   width: 40px;
   height: 14px;
-  background: url(../public/assets/images/right_arrow.png) no-repeat center
-    center;
+  background: url(/assets/images/right_arrow.png) no-repeat center center;
 }
-#section .pagination .account {
+#section .pagination .count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   margin: 0 20px;
 }
-#section .pagination .account span.current {
+#section .pagination .count span.current {
   font-size: 1.5rem;
   font-weight: 700;
 }
-#section .pagination .account span.total {
+#section .pagination .count span.total {
   font-size: 1rem;
 }
 
@@ -232,8 +251,8 @@
     display: block;
     z-index: 100;
   }
-  #section .text_area .kor .title a,
-  #section .text_area .eng .title a {
+  #section .text_area .kor .title button,
+  #section .text_area .eng .title button {
     font-size: 0.844rem;
   }
   #section .annotation_area {
@@ -256,7 +275,7 @@
 }
 @media only screen and (max-width: 500px) {
   #section {
-    padding: 20px 25px 15px 25px;
+    padding: 20px 20px 15px 20px;
     font-size: 0.625em;
   }
   #section .annotation_area {
@@ -271,45 +290,49 @@
   #section .text_area .title {
     top: -30px;
   }
-  #section .text_area .eng .title a {
+  #section .text_area .eng .title button {
     left: 125px;
     width: 60px;
     line-height: 30px;
   }
-  #section .text_area .eng .title a::before,
-  #section .text_area .eng .title a::after {
+  #section .text_area .eng .title button::before,
+  #section .text_area .eng .title button::after {
     height: 30px;
     width: 14px;
   }
-  #section .text_area .eng .title a::before {
+  #section .text_area .eng .title button::before {
     left: -7px;
   }
-  #section .text_area .eng .title a::after {
+  #section .text_area .eng .title button::after {
     right: -7px;
   }
-  #section .text_area .kor .title a {
+  #section .text_area .kor .title button {
     left: 50px;
     width: 60px;
     line-height: 30px;
   }
-  #section .text_area .kor .title a::before,
-  #section .text_area .kor .title a::after {
+  #section .text_area .kor .title button::before,
+  #section .text_area .kor .title button::after {
     height: 30px;
     width: 14px;
   }
-  #section .text_area .kor .title a::before {
+  #section .text_area .kor .title button::before {
     left: -7px;
   }
-  #section .text_area .kor .title a::after {
+  #section .text_area .kor .title button::after {
     right: -7px;
   }
   #section .annotation_area {
     height: calc((100% - 105px) / 2);
   }
-  #section .pagination .account span.current {
+  #section .pagination .count {
+    gap: 6px;
+  }
+
+  #section .pagination .count span.current {
     font-size: 1.125rem;
   }
-  #section .pagination .account span.total {
+  #section .pagination .count span.total {
     font-size: 0.875rem;
   }
 }
@@ -317,8 +340,8 @@
   #section {
     font-size: 0.5em;
   }
-  #section .text_area .kor .title a,
-  #section .text_area .eng .title a {
+  #section .text_area .kor .title button,
+  #section .text_area .eng .title button {
     font-size: 0.688rem;
   }
 }

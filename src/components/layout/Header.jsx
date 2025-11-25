@@ -8,18 +8,12 @@ export default function Header({ qaNum, setQaNum }) {
   // 탭메뉴 열림/닫힘 토글
   const toggleTabMenu = () => {
     setIsTabOpen(!isTabOpen);
-    // tabRef.current.classList.toggle('active');
-    // menuRef.current.classList.toggle('active');
-    // dimRef.current.classList.toggle('active');
     document.body.classList.toggle('fixed');
   };
 
   // 탭메뉴 닫기
   const closeTabMenu = () => {
     setIsTabOpen(false);
-    // tabRef.current.classList.remove('active');
-    // menuRef.current.classList.remove('active');
-    // dimRef.current.classList.remove('active');
     document.body.classList.remove('fixed');
   };
 

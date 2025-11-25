@@ -1,3 +1,5 @@
+@import url('https://site-assets.fontawesome.com/releases/v6.3.0/css/all.css');
+
 #footer {
   display: flex;
   flex-direction: row;
@@ -14,15 +16,15 @@
 #footer .ft_logo {
   width: 120px;
   height: 35px;
-  background: url(../public/assets/images/church_logo.png) no-repeat center
-    center;
+  background: url(../assets/images/church_logo.png) no-repeat center center;
 }
 #footer .copyright {
   width: 50%;
 }
 #footer .copyright p {
   color: #fff;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 100;
   word-break: keep-all;
 }
 #footer .link a {
@@ -42,11 +44,11 @@
   #footer .ft_logo {
     width: 80px;
     height: 23px;
-    background: url(../public/assets/images/mobile_church_logo.png) no-repeat
-      center center;
+    background: url(../assets/images/mobile_church_logo.png) no-repeat center
+      center;
   }
   #footer .copyright p {
-    zoom: 0.8;
+    font-size: 8px;
   }
   #footer .link a:first-child,
   #footer .link a:nth-child(2) {
@@ -55,11 +57,11 @@
 }
 @media only screen and (max-width: 500px) {
   #footer {
-    padding: 0 25px;
+    padding: 0 20px;
     font-size: 0.75em;
   }
   #footer .copyright p {
-    zoom: 0.6;
+    font-size: 7px;
   }
   #footer .link a:first-child,
   #footer .link a:nth-child(2) {

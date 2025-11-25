@@ -5,7 +5,14 @@ export default function Menu({ qaNum, setQaNum, isTabOpen, closeTabMenu }) {
   console.log(qaNum, setQaNum);
   const [isBlockOpen, setIsBlockOpen] = useState(null); // 10개씩 블럭 열림/닫힘 상태.
 
-  /* 문답 블럭 */
+  // 해당 문답 이동
+  const moveNum = (e) => {
+    setQaNum(Number(e.currentTarget.dataset.num));
+    closeTabMenu();
+    e.currentTarget.parentElement.classList.add('active');
+  };
+
+  /* 문답 블럭(10개씩) */
   const tenBlock = Array.from({ length: 20 }, (_, i) => {
     // minNum 부터 maxNum까지 10개씩 자른 블럭
     const minNum = i * 10 + 1;
@@ -18,14 +25,17 @@ export default function Menu({ qaNum, setQaNum, isTabOpen, closeTabMenu }) {
         return;
       }
       return (
-        <li key={num}>
-          <button type="button">{num}문</button>
+        <li key={num} className={Number(qaNum) === num ? 'on' : ''}>
+          <button type="button" data-num={num} onClick={moveNum}>
+            {num}문
+          </button>
         </li>
       );
     });
 
     const isActive = isBlockOpen === i;
 
+    // 문답 블럭 열림/닫힘
     const spreadList = () => {
       if (isActive) {
         setIsBlockOpen(null);
@@ -35,7 +45,12 @@ export default function Menu({ qaNum, setQaNum, isTabOpen, closeTabMenu }) {
     };
 
     return (
-      <li key={i} className={isActive ? 'active' : ''}>
+      <li
+        key={i}
+        className={`${isActive ? 'active' : ''} ${
+          minNum <= qaNum && qaNum <= maxNum ? 'active' : ''
+        }`}
+      >
         <button type="button" onClick={spreadList}>
           {minNum}문~{maxNum}문
         </button>
