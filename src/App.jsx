@@ -1,17 +1,11 @@
-import { useState } from 'react';
-import Footer from './components/layout/Footer';
-import Header from './components/layout/Header';
-import Menu from './components/layout/Menu';
-import Wlc from './Wlc';
+import './styles/index.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
 
 function App() {
-  const [qaNum, setQaNum] = useState(1);
-
   return (
     <>
-      <Header qaNum={qaNum} setQaNum={setQaNum} />
-      <Wlc />
-      <Footer />
+      <RouterProvider router={router} />
     </>
   );
 }
