@@ -6,9 +6,12 @@ import wlc_bible_kor from '../assets/data/wlc_bible_kor.json';
 import { useState } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Wlc() {
-  const [qaNum, setQaNum] = useState(1); // 현재 문답 번호 상태
+  const [searchParams] = useSearchParams();
+  const initialNum = Number(searchParams.get('num')) || 1;
+  const [qaNum, setQaNum] = useState(initialNum); // 현재 문답 번호 상태
   const [isKor, setIsKor] = useState(true); // 모바일에서 한글/영문 상태
 
   // 모바일에서 한글 버튼 이벤트
