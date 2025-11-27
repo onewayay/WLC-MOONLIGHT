@@ -1,5 +1,5 @@
-// import wlc_bible_eng from '../assets/data/wlc_bible_eng.json';
 import { useState } from 'react';
+import kor_data from '../assets/data/WLC_KOR.json';
 import wlc_bible_kor from '../assets/data/wlc_bible_kor.json';
 import '../styles/annotation-collect.css';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,16 @@ export default function AnnotationCollect() {
 
   // 관련 문답 바로가기 버튼 이벤트
   const goWlc = (e) => {
-    navigate(`/wlc?num=${e.currentTarget.dataset.num}`);
+    let wlcNum = null;
+
+    for (let key in kor_data) {
+      if (kor_data[key].ref?.includes(Number(e.currentTarget.dataset.num))) {
+        wlcNum = key;
+        break;
+      }
+    }
+
+    navigate(`/wlc?num=${wlcNum}`);
   };
 
   // 렌더링할 말씀 목록 상태
