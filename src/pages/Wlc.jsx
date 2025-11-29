@@ -88,11 +88,11 @@ export default function Wlc() {
             </div>
             <div className="content">
               <p>Q.{qaNum}</p>
+              <pre>{kor_data[qaNum].Q}</pre>
+              <p>A.{qaNum}</p>
               <pre
                 dangerouslySetInnerHTML={{ __html: kor_data[qaNum].A.join('') }}
               />
-              <p>A.{qaNum}</p>
-              <pre>{kor_data[qaNum].A}</pre>
             </div>
           </div>
         </div>
