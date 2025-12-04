@@ -64,7 +64,6 @@ export default function Wlc() {
 
   return (
     <>
-      <Header qaNum={qaNum} setQaNum={setQaNum} />
       <section id="section">
         <div className="text_area">
           <div className={`eng ${isKor ? '' : 'active'}`}>

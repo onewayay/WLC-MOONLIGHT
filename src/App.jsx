@@ -1,11 +1,15 @@
+import Header from './components/layout/Header';
 import './styles/index.css';
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      {/* <Footer /> */}
     </>
   );
 }
