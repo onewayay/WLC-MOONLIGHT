@@ -1,20 +1,128 @@
-.annotation_list .search_area {
-  margin: 30px 0;
+.annotation-collect .inner {
+  padding: 60px 0;
+}
+
+.annotation-collect .title h2 {
+  font-size: 36px;
+}
+
+.annotation-collect .title p {
+  color: var(--color-text-light-gray);
+}
+
+.annotation-collect .search-area {
+  margin-top: 60px;
   display: flex;
-  gap: 10px;
+  gap: 16px;
 }
 
-.annotation_list .verse_list li:not(last-child) {
-  margin-bottom: 30px;
+.annotation-collect .search-area input {
+  flex: 1;
+  padding: 8px 20px 8px 48px;
+  border-radius: 8px;
+  background: url(/assets/images/zoom-ico.png) no-repeat 16px center;
+  background-size: 16px;
+  background-color: var(--color-box-bg);
 }
 
-.annotation_list .verse_list li div {
-  margin: 6px 0;
+.annotation-collect .search-area input::placeholder {
+  color: var(--color-text-light-gray);
+}
+
+.annotation-collect .search-area button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+}
+
+.annotation-collect .question-list {
+  margin-top: 60px;
+  max-height: 650px;
+  border-top: 1px solid var(--color-light-border);
+  border-bottom: 1px solid var(--color-light-border);
+  overflow: auto;
+}
+
+/* scrollbar 전체 영역 */
+.annotation-collect .question-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* 스크롤 thumb */
+.annotation-collect .question-list::-webkit-scrollbar-thumb {
+  background: rgba(19, 91, 236, 0.4);
+  border-radius: 8px;
+}
+
+/* 트랙(배경), 위/아래 버튼 */
+.annotation-collect .question-list::-webkit-scrollbar-track,
+.annotation-collect .question-list::-webkit-scrollbar-button {
+  display: none;
+}
+
+.annotation-collect .verse-list {
+  margin-top: 60px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.annotation-collect .verse-list li {
+  background-color: var(--color-box-bg);
+  transition: 0.3s;
+}
+
+.annotation-collect .verse-list li:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.annotation-collect .verse-list li:hover {
+  background-color: var(--color-light-box-bg);
+}
+
+.annotation-collect .verse-list li a {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 40px 20px 20px;
 }
 
-.annotation_list .verse_list li div p {
-  word-break: keep-all;
+.annotation-collect .verse-list li a span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 36px;
+  border-radius: 4px;
+  color: var(--color-primary);
+  background-color: var(--color-primary-opacity);
+  transition: 0.3s;
 }
+
+.annotation-collect .verse-list li:hover a span {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.annotation-collect .verse-list li a strong {
+  margin-bottom: 4px;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.annotation-collect .verse-list li a .eng-verse strong {
+  display: none;
+}
+
+.annotation-collect .verse-list li p {
+  color: var(--color-text-light-gray);
+}
+
+/*
+  반응형
+*/
+
+/*
+  light 모드
+*/
