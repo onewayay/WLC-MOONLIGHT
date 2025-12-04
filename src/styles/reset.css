@@ -28,9 +28,12 @@
   --color-primary: #135bec;
   --color-primary-opacity: rgba(19, 91, 236, 0.15);
   --color-midnight: #101622;
-  --color-box-bg: rgba(255, 255, 255, 0.04);
+  --color-box-bg: rgba(255, 255, 255, 0.08);
+  --color-light-box-bg: rgba(255, 255, 255, 0.15);
   --color-border: rgba(255, 255, 255, 0.1);
   --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-light-border: rgba(255, 255, 255, 0.3);
+  --color-text-light-gray: #a5aec2;
 }
 
 html,
@@ -111,9 +114,6 @@ textarea {
   color: inherit;
   background: transparent;
   border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
 }
 
 textarea {

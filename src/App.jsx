@@ -1,3 +1,4 @@
+import Footer from './components/layout/Footer';
 import Header from './components/layout/Header';
 import './styles/index.css';
 import { Outlet } from 'react-router-dom';
@@ -9,7 +10,7 @@ function App() {
       <main>
         <Outlet />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
