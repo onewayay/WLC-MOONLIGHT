@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Home from './pages/Home';
-import Wlc from './pages/Wlc';
 import AnnotationCollect from './pages/AnnotationCollect';
 import NotFound from './pages/NotFound';
+import WlcList from './pages/WlcList';
+import WlcView from './pages/WlcView';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,8 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'wlc', element: <Wlc /> },
+      { path: 'wlclist', element: <WlcList /> },
+      { path: 'wlcview', element: <WlcView /> },
       { path: 'annotationcollect', element: <AnnotationCollect /> },
     ],
   },
