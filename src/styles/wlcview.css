@@ -1,0 +1,128 @@
+.wlc-view .inner {
+  padding: 60px 0;
+}
+
+.wlc-view .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 5px solid var(--color-border);
+}
+
+.wlc-view .title h2 {
+  font-size: 36px;
+}
+
+.wlc-view .title .move-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wlc-view .title .move-btns button {
+  padding: 8px 12px 8px 36px;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.wlc-view .title .move-btns button:first-child {
+  background: url(/assets/images/chevron-up-white.png) no-repeat left 12px
+    center;
+  background-size: 12px;
+  background-color: var(--color-box-bg);
+}
+.wlc-view .title .move-btns button:nth-child(2) {
+  background: url(/assets/images/chevron-down-white.png) no-repeat left 12px
+    center;
+  background-size: 12px;
+  background-color: var(--color-box-bg);
+}
+
+.wlc-view .title a {
+  margin-left: 20px;
+  padding: 8px 12px 8px 40px;
+  border-radius: 6px;
+  font-size: 16px;
+  background: url(/assets/images/list-ico-white.png) no-repeat left 12px center;
+  background-size: 15px;
+  background-color: var(--color-box-bg);
+}
+
+.wlc-view .qna {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wlc-view .qna > div {
+  width: calc((100% - 40px) / 2);
+}
+
+.wlc-view .qna .question {
+  padding-bottom: 20px;
+}
+.wlc-view .qna .answer {
+  padding: 20px 0;
+}
+
+.wlc-view .qna .question {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wlc-view .qna strong {
+  font-size: 20px;
+}
+
+.wlc-view .qna p {
+  margin-top: 8px;
+  color: #dfdfdf;
+}
+
+.wlc-view .footnote {
+  margin-top: 60px;
+}
+
+.wlc-view .footnote h3 {
+  font-size: 24px;
+}
+
+.wlc-view .footnote .verse-list {
+  margin-top: 30px;
+}
+
+.wlc-view .footnote .verse-list li {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.wlc-view .footnote .verse-list li:not(:first-child) {
+  margin-top: 14px;
+}
+
+.wlc-view .footnote .verse-list li > div {
+  width: calc((100% - 40px) / 2);
+}
+
+.wlc-view .footnote .verse-list li strong {
+  font-weight: 500;
+  color: var(--color-primary);
+}
+.wlc-view .footnote .verse-list li p {
+  margin-top: 4px;
+  color: var(--color-text-light-gray);
+}
+
+/*
+  반응형
+*/
+
+/*
+  light 모드
+*/
