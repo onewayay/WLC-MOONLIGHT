@@ -1,0 +1,169 @@
+.wlc-list .inner {
+  padding: 60px 0;
+}
+
+.wlc-list .title h2 {
+  font-size: 36px;
+}
+
+.wlc-list .title p {
+  color: var(--color-text-light-gray);
+}
+
+.wlc-list .search-area {
+  margin-top: 60px;
+  display: flex;
+  gap: 16px;
+}
+
+.wlc-list .search-area input {
+  flex: 1;
+  padding: 8px 20px 8px 48px;
+  border-radius: 8px;
+  background: url(/assets/images/zoom-ico.png) no-repeat 16px center;
+  background-size: 16px;
+  background-color: var(--color-box-bg);
+}
+
+.wlc-list .search-area input::placeholder {
+  color: var(--color-text-light-gray);
+}
+
+.wlc-list .search-area button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+}
+
+.wlc-list .question-list {
+  margin-top: 60px;
+  max-height: 650px;
+  border-top: 1px solid var(--color-light-border);
+  border-bottom: 1px solid var(--color-light-border);
+  overflow: auto;
+}
+
+/* scrollbar 전체 영역 */
+.wlc-list .question-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* 스크롤 thumb */
+.wlc-list .question-list::-webkit-scrollbar-thumb {
+  background: rgba(19, 91, 236, 0.4);
+  border-radius: 8px;
+}
+
+/* 트랙(배경), 위/아래 버튼 */
+.wlc-list .question-list::-webkit-scrollbar-track,
+.wlc-list .question-list::-webkit-scrollbar-button {
+  display: none;
+}
+
+.wlc-list .question-list li {
+  padding: 0 12px;
+  transition: 0.3s;
+}
+
+.wlc-list .question-list li:hover {
+  background-color: var(--color-light-box-bg);
+}
+
+.wlc-list .question-list li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  background: url(/public/assets/images/chevron-right-white.png) no-repeat right
+    16px center;
+  background-size: 10px;
+}
+
+.wlc-list .question-list li:not(:last-child) a {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wlc-list .question-list li a strong {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  color: var(--color-primary);
+  background-color: var(--color-primary-opacity);
+  transition: 0.3s;
+}
+
+.wlc-list .question-list li:hover a strong {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.wlc-list .recent-view {
+  margin-top: 100px;
+}
+.wlc-list .recent-view .title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wlc-list .recent-view .title img {
+  width: 24px;
+}
+
+.wlc-list .recent-view .title h3 {
+  font-size: 20px;
+}
+
+.wlc-list .recent-view .recent-card-list {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.wlc-list .recent-view .recent-card-list li {
+  width: calc((100% - 40px) / 3);
+  border-radius: 12px;
+  background-color: var(--color-box-bg);
+  transition: 0.3s;
+}
+
+.wlc-list .recent-view .recent-card-list li:hover {
+  transform: translateY(-8px);
+  background-color: var(--color-light-box-bg);
+}
+
+.wlc-list .recent-view .recent-card-list li a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.wlc-list .recent-view .recent-card-list li a span {
+  font-size: 13px;
+  color: var(--color-primary);
+}
+.wlc-list .recent-view .recent-card-list li a strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wlc-list .recent-view .recent-card-list li a p {
+  font-size: 13px;
+  color: var(--color-text-light-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+  반응형
+*/
+
+/*
+  light 모드
+*/
