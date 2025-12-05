@@ -1,7 +1,7 @@
 import '../styles/wlclist.css';
 import kor_data from '../assets/data/WLC_KOR.json';
 import { Link } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Wlc() {
   // const [searchParams] = useSearchParams();
@@ -9,7 +9,7 @@ export default function Wlc() {
   const [qaNum, setQaNum] = useState(1); // 문답 상태
   console.log('qaNum', qaNum);
 
-  const recentView = useRef([]); // 최근 본 문답 목록 배열
+  const recentView = useRef([]); // 최근 본 문답 목록 배열을 담을 Ref
 
   // 문답 3개까지만 담기도록
   const setrecentView = (num) => {
@@ -37,6 +37,11 @@ export default function Wlc() {
     localStorage.setItem('recentView', JSON.stringify(recentView.current));
   };
 
+  // 새로고침 및 이동시에 recentView에 현재 localStorage 값을 넣어줌
+  useEffect(() => {
+    recentView.current = JSON.parse(localStorage.getItem('recentView') ?? '[]');
+  }, []);
+
   // 문답 리스트 렌더링
   const questionListRender = Object.entries(kor_data).map(([key, value]) => {
     return (
@@ -55,10 +60,10 @@ export default function Wlc() {
   ).map((num, idx) => {
     return (
       <li key={idx}>
-        <Link to="">
+        <Link to="/wlcview">
           <span>제 {num}문</span>
-          <strong>{kor_data[1].Q}</strong>
-          <p>{kor_data[1].A}</p>
+          <strong>{kor_data[num].Q}</strong>
+          <p>{kor_data[num].A}</p>
         </Link>
       </li>
     );
@@ -87,42 +92,7 @@ export default function Wlc() {
             <img src="/assets/images/recent-ico.png" alt="최근 목록 아이콘" />
             <h3>최근 본 문답</h3>
           </div>
-          <ul className="recent-card-list">
-            {recentViewRender}
-            {/* <li>
-              <Link to="">
-                <span>제 101 문</span>
-                <strong>
-                  문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문
-                </strong>
-                <p>
-                  답답답답답답답답답답답답답답답문문문문문문문문문문문문문문문문문문문문문답답답답답답답답답
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link to="">
-                <span>제 101 문</span>
-                <strong>
-                  문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문
-                </strong>
-                <p>
-                  답답답답답답답답답답답답답답답문문문문문문문문문문문문문문문문문문문문문답답답답답답답답답
-                </p>
-              </Link>
-            </li>
-            <li>
-              <Link to="">
-                <span>제 101 문</span>
-                <strong>
-                  문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문문
-                </strong>
-                <p>
-                  답답답답답답답답답답답답답답답문문문문문문문문문문문문문문문문문문문문문답답답답답답답답답
-                </p>
-              </Link>
-            </li> */}
-          </ul>
+          <ul className="recent-card-list">{recentViewRender}</ul>
         </div>
       </div>
     </div>
