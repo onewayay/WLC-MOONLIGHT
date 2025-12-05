@@ -1,66 +1,68 @@
 import '../styles/wlclist.css';
-import eng_data from '../assets/data/WLC_ENG.json';
 import kor_data from '../assets/data/WLC_KOR.json';
-import wlc_bible_eng from '../assets/data/wlc_bible_eng.json';
-import wlc_bible_kor from '../assets/data/wlc_bible_kor.json';
-import { useState } from 'react';
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
 
 export default function Wlc() {
   // const [searchParams] = useSearchParams();
-  // const initialNum = Number(searchParams.get('num')) || 1;
-  // const [qaNum, setQaNum] = useState(initialNum); // 현재 문답 번호 상태
-  // const [isKor, setIsKor] = useState(true); // 모바일에서 한글/영문 상태
 
-  // // 모바일에서 한글 버튼 이벤트
-  // const switchKor = () => {
-  //   setIsKor(true);
-  // };
+  const [qaNum, setQaNum] = useState(1); // 문답 상태
+  console.log('qaNum', qaNum);
 
-  // // 모바일에서 영어 버튼 이벤트
-  // const switchEng = () => {
-  //   setIsKor(false);
-  // };
+  const recentView = useRef([]); // 최근 본 문답 목록 배열
 
-  // // 한글 성경 말씀
-  // const renderingBibleKor = kor_data[qaNum].ref?.map((item, idx) => {
-  //   return (
-  //     <div className="content" key={idx}>
-  //       <p>[{item}]</p>
-  //       <pre>{wlc_bible_kor[item]}</pre>
-  //     </div>
-  //   );
-  // });
+  // 문답 3개까지만 담기도록
+  const setrecentView = (num) => {
+    // 기존에 존재하면 삭제
+    const existIndex = recentView.current.indexOf(num);
 
-  // // 영문 성경 말씀
-  // const renderingBibleEng = eng_data[qaNum].ref?.map((item, idx) => {
-  //   return (
-  //     <div className="content" key={idx}>
-  //       <p>[{item}]</p>
-  //       <pre>{wlc_bible_eng[item]}</pre>
-  //     </div>
-  //   );
-  // });
+    if (existIndex !== -1) {
+      recentView.current.splice(existIndex, 1);
+    }
 
-  // // 다음 문답
-  // const nextNum = () => {
-  //   if (qaNum === 196) {
-  //     return;
-  //   } else {
-  //     setQaNum(qaNum + 1);
-  //   }
-  // };
+    // 뒤로 추가
+    recentView.current.push(num);
 
-  // // 이전 문답
-  // const prevNum = () => {
-  //   if (qaNum === 1) {
-  //     return;
-  //   } else {
-  //     setQaNum(qaNum - 1);
-  //   }
-  // };
+    // 3개 초과되면 앞에서 제거
+    if (recentView.current.length > 3) {
+      recentView.current.shift();
+    }
+  };
+
+  // 문답 리스트 클릭 이벤트
+  const onClickQuestion = (e) => {
+    const thisNum = e.currentTarget.dataset.num;
+    setQaNum(thisNum);
+    setrecentView(thisNum);
+    localStorage.setItem('recentView', JSON.stringify(recentView.current));
+  };
+
+  // 문답 리스트 렌더링
+  const questionListRender = Object.entries(kor_data).map(([key, value]) => {
+    return (
+      <li key={key} onClick={onClickQuestion} data-num={key}>
+        <Link to="">
+          <strong>{key}</strong>
+          <p>{value.Q}</p>
+        </Link>
+      </li>
+    );
+  });
+
+  // 최근 본 문답 렌더링
+  const recentViewRender = JSON.parse(
+    localStorage.getItem('recentView') ?? '[]'
+  ).map((num, idx) => {
+    return (
+      <li key={idx}>
+        <Link to="">
+          <span>제 {num}문</span>
+          <strong>{kor_data[1].Q}</strong>
+          <p>{kor_data[1].A}</p>
+        </Link>
+      </li>
+    );
+  });
 
   return (
     <div className="wlc-list">
@@ -79,87 +81,15 @@ export default function Wlc() {
           />
           <button type="button">검색</button>
         </div>
-        <ul className="question-list">
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <strong>1</strong>
-              <p>사람의 첫째 되는 목적은 무엇인가?</p>
-            </Link>
-          </li>
-        </ul>
+        <ul className="question-list">{questionListRender}</ul>
         <div className="recent-view">
           <div className="title">
             <img src="/assets/images/recent-ico.png" alt="최근 목록 아이콘" />
             <h3>최근 본 문답</h3>
           </div>
           <ul className="recent-card-list">
-            <li>
+            {recentViewRender}
+            {/* <li>
               <Link to="">
                 <span>제 101 문</span>
                 <strong>
@@ -191,7 +121,7 @@ export default function Wlc() {
                   답답답답답답답답답답답답답답답문문문문문문문문문문문문문문문문문문문문문답답답답답답답답답
                 </p>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
