@@ -8,8 +8,8 @@ export default function WlcView() {
         <div className="title">
           <h2>제 1문</h2>
           <div className="move-btns">
-            <button type="button">다음 문답</button>
             <button type="button">이전 문답</button>
+            <button type="button">다음 문답</button>
             <Link to="/wlclist">리스트로 돌아가기</Link>
           </div>
         </div>
