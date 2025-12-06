@@ -76,7 +76,8 @@
   font-size: 20px;
 }
 
-.wlc-view .qna p {
+.wlc-view .qna p,
+.wlc-view .qna pre {
   margin-top: 8px;
   color: #dfdfdf;
 }

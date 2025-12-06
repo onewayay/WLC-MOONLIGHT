@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Wlc() {
-  // const [searchParams] = useSearchParams();
-
   const [qaNum, setQaNum] = useState(1); // 문답 상태
   console.log('qaNum', qaNum);
 
@@ -46,7 +44,7 @@ export default function Wlc() {
   const questionListRender = Object.entries(kor_data).map(([key, value]) => {
     return (
       <li key={key} onClick={onClickQuestion} data-num={key}>
-        <Link to="">
+        <Link to={`/wlcview/${key}`}>
           <strong>{key}</strong>
           <p>{value.Q}</p>
         </Link>
@@ -60,7 +58,7 @@ export default function Wlc() {
   ).map((num, idx) => {
     return (
       <li key={idx}>
-        <Link to="/wlcview">
+        <Link to={`/wlcview/${num}`}>
           <span>제 {num}문</span>
           <strong>{kor_data[num].Q}</strong>
           <p>{kor_data[num].A}</p>

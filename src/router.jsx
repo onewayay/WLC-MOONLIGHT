@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'wlclist', element: <WlcList /> },
-      { path: 'wlcview', element: <WlcView /> },
+      { path: 'wlcview/:qaNum', element: <WlcView /> },
       { path: 'annotationcollect', element: <AnnotationCollect /> },
     ],
   },
