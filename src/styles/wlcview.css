@@ -80,6 +80,8 @@
 .wlc-view .qna pre {
   margin-top: 8px;
   color: #dfdfdf;
+  white-space: pre-wrap;
+  word-break: keep-all;
 }
 
 .wlc-view .footnote {
