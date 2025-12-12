@@ -12,17 +12,19 @@ export default function WlcView() {
 
   // 현재 문답에 알맞는 한글 각주
   const presentKorBible = wlc_bible_kor.filter((item) => {
-    return kor_data[qaNum].ref.includes(Number(item.num));
+    return (kor_data[qaNum].ref ?? []).includes(Number(item.num));
   });
   // 현재 문답에 알맞는 영어 각주
   const presentEngBible = wlc_bible_eng.filter((item) => {
-    return eng_data[qaNum].ref.includes(Number(item.num));
+    return (eng_data[qaNum].ref ?? []).includes(Number(item.num));
   });
 
   const onClickPrev = () => {
+    if (Number(qaNum) === 1) return;
     navigate(`/wlcview/${Number(qaNum) - 1}`);
   };
   const onClickNext = () => {
+    if (Number(qaNum) === 196) return;
     navigate(`/wlcview/${Number(qaNum) + 1}`);
   };
 
@@ -38,9 +40,9 @@ export default function WlcView() {
         </div>
         <div className="eng-verse">
           <strong>
-            [{presentEngBible[idx].num}] {presentEngBible[idx].bible}
+            [{presentEngBible[idx]?.num}] {presentEngBible[idx]?.bible}
           </strong>
-          <p>{presentEngBible[idx].verse}</p>
+          <p>{presentEngBible[idx]?.verse}</p>
         </div>
       </li>
     );
