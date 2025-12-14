@@ -85,6 +85,7 @@
 }
 
 .wlc-view .footnote {
+  position: relative;
   margin-top: 60px;
 }
 
@@ -122,6 +123,15 @@
   color: var(--color-text-light-gray);
 }
 
+.wlc-view .footnote .sticky-move-btns {
+  position: sticky;
+  left: 0;
+  top: 50%;
+  width: calc(100% + 80px);
+  display: flex;
+  justify-content: space-between;
+  transform: translate(-40px, -50%);
+}
 /*
   반응형
 */

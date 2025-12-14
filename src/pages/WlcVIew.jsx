@@ -1,9 +1,9 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import '../styles/wlcview.css';
-import kor_data from '../assets/data/WLC_KOR.json';
-import eng_data from '../assets/data/WLC_ENG.json';
-import wlc_bible_kor from '../assets/data/wlc_bible_kor_v2.json';
-import wlc_bible_eng from '../assets/data/wlc_bible_eng_v2.json';
+import { Link, useNavigate, useParams } from "react-router-dom";
+import "../styles/wlcview.css";
+import kor_data from "../assets/data/WLC_KOR.json";
+import eng_data from "../assets/data/WLC_ENG.json";
+import wlc_bible_kor from "../assets/data/wlc_bible_kor_v2.json";
+import wlc_bible_eng from "../assets/data/wlc_bible_eng_v2.json";
 
 export default function WlcView() {
   const { qaNum } = useParams(); // 현재 페이지의 문답 숫자
@@ -87,6 +87,14 @@ export default function WlcView() {
         </div>
         <div className="footnote">
           <h3>관련 성경 구절</h3>
+          <div className="sticky-move-btns">
+            <button type="button" onClick={onClickPrev}>
+              prev
+            </button>
+            <button type="button" onClick={onClickNext}>
+              next
+            </button>
+          </div>
           <ul className="verse-list">{footnoteRender}</ul>
         </div>
       </div>
