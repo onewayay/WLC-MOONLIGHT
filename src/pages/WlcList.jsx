@@ -1,44 +1,20 @@
-import "../styles/wlclist.css";
-import kor_data from "../assets/data/WLC_KOR.json";
-import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import '../styles/wlclist.css';
+import kor_data from '../assets/data/WLC_KOR.json';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { addRecentView, getRecentView } from '../utils/recentView';
 
 export default function Wlc() {
-  const [qaNum, setQaNum] = useState(1); // 문답 상태
-  console.log("qaNum", qaNum);
-
-  const recentView = useRef([]); // 최근 본 문답 목록 배열을 담을 Ref
-
-  // 문답 3개까지만 담기도록
-  const setrecentView = (num) => {
-    // 기존에 존재하면 삭제
-    const existIndex = recentView.current.indexOf(num);
-
-    if (existIndex !== -1) {
-      recentView.current.splice(existIndex, 1);
-    }
-
-    // 뒤로 추가
-    recentView.current.push(num);
-
-    // 3개 초과되면 앞에서 제거
-    if (recentView.current.length > 3) {
-      recentView.current.shift();
-    }
-  };
+  // 최근 본 문답 상태
+  const [recentView, setRecentView] = useState(() => getRecentView());
 
   // 문답 리스트 클릭 이벤트
   const onClickQuestion = (e) => {
-    const thisNum = e.currentTarget.dataset.num;
-    setQaNum(thisNum);
-    setrecentView(thisNum);
-    localStorage.setItem("recentView", JSON.stringify(recentView.current));
-  };
+    const thisNum = Number(e.currentTarget.dataset.num);
 
-  // 새로고침 및 이동시에 recentView에 현재 localStorage 값을 넣어줌
-  useEffect(() => {
-    recentView.current = JSON.parse(localStorage.getItem("recentView") ?? "[]");
-  }, []);
+    const next = addRecentView(thisNum);
+    setRecentView(next);
+  };
 
   // 문답 리스트 렌더링
   const questionListRender = Object.entries(kor_data).map(([key, value]) => {
@@ -53,9 +29,7 @@ export default function Wlc() {
   });
 
   // 최근 본 문답 렌더링
-  const recentViewRender = JSON.parse(
-    localStorage.getItem("recentView") ?? "[]"
-  ).map((num, idx) => {
+  const recentViewRender = recentView.map((num, idx) => {
     return (
       <li key={idx}>
         <Link to={`/wlcview/${num}`}>
