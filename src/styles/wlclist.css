@@ -10,99 +10,9 @@
   color: var(--color-text-light-gray);
 }
 
-.wlc-list .search-area {
-  margin-top: 60px;
-  display: flex;
-  gap: 16px;
-}
-
-.wlc-list .search-area input {
-  flex: 1;
-  padding: 8px 20px 8px 48px;
-  border-radius: 8px;
-  background: url(/assets/images/zoom-ico.png) no-repeat 16px center;
-  background-size: 16px;
-  background-color: var(--color-box-bg);
-}
-
-.wlc-list .search-area input::placeholder {
-  color: var(--color-text-light-gray);
-}
-
-.wlc-list .search-area button {
-  padding: 8px 20px;
-  border-radius: 6px;
-  background-color: var(--color-primary);
-}
-
-.wlc-list .question-list {
-  margin-top: 60px;
-  max-height: 650px;
-  border-top: 1px solid var(--color-light-border);
-  border-bottom: 1px solid var(--color-light-border);
-  overflow: auto;
-}
-
-/* scrollbar 전체 영역 */
-.wlc-list .question-list::-webkit-scrollbar {
-  width: 4px;
-}
-
-/* 스크롤 thumb */
-.wlc-list .question-list::-webkit-scrollbar-thumb {
-  background: rgba(19, 91, 236, 0.4);
-  border-radius: 8px;
-}
-
-/* 트랙(배경), 위/아래 버튼 */
-.wlc-list .question-list::-webkit-scrollbar-track,
-.wlc-list .question-list::-webkit-scrollbar-button {
-  display: none;
-}
-
-.wlc-list .question-list li {
-  padding: 0 12px;
-  transition: 0.3s;
-}
-
-.wlc-list .question-list li:hover {
-  background-color: var(--color-light-box-bg);
-}
-
-.wlc-list .question-list li a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 0;
-  background: url(/assets/images/chevron-right-white.png) no-repeat right 16px
-    center;
-  background-size: 10px;
-}
-
-.wlc-list .question-list li:not(:last-child) a {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.wlc-list .question-list li a strong {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  aspect-ratio: 1/1;
-  border-radius: 4px;
-  color: var(--color-primary);
-  background-color: var(--color-primary-opacity);
-  transition: 0.3s;
-}
-
-.wlc-list .question-list li:hover a strong {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
-
+/* ST: 최근 본 문답 */
 .wlc-list .recent-view {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 .wlc-list .recent-view .title {
   display: flex;
@@ -158,6 +68,89 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ST: 전체 문답 보기 */
+.wlc-list .all-list {
+  margin-top: 60px;
+}
+
+.wlc-list .all-list > h3 {
+  font-size: 20px;
+}
+
+/* 검색 바 */
+.wlc-list .all-list .search-area {
+  margin-top: 30px;
+  display: flex;
+  gap: 16px;
+}
+
+.wlc-list .all-list .search-area input {
+  flex: 1;
+  padding: 8px 20px 8px 48px;
+  border-radius: 8px;
+  background: url(/assets/images/zoom-ico.png) no-repeat 16px center;
+  background-size: 16px;
+  background-color: var(--color-box-bg);
+}
+
+.wlc-list .all-list .search-area input::placeholder {
+  color: var(--color-text-light-gray);
+}
+
+.wlc-list .all-list .search-area button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+}
+
+/* ST: 문답 리스트 */
+.wlc-list .all-list .question-list {
+  margin-top: 60px;
+  border-top: 1px solid var(--color-light-border);
+  border-bottom: 1px solid var(--color-light-border);
+}
+
+.wlc-list .question-list li {
+  padding: 0 12px;
+  transition: 0.3s;
+}
+
+.wlc-list .all-list .question-list li:hover {
+  background-color: var(--color-light-box-bg);
+}
+
+.wlc-list .all-list .question-list li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  background: url(/assets/images/chevron-right-white.png) no-repeat right 16px
+    center;
+  background-size: 10px;
+}
+
+.wlc-list .all-list .question-list li:not(:last-child) a {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wlc-list .all-list .question-list li a strong {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  color: var(--color-primary);
+  background-color: var(--color-primary-opacity);
+  transition: 0.3s;
+}
+
+.wlc-list .all-list .question-list li:hover a strong {
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 /*

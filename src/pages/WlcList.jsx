@@ -1,11 +1,11 @@
-import '../styles/wlclist.css';
-import kor_data from '../assets/data/WLC_KOR.json';
-import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import "../styles/wlclist.css";
+import kor_data from "../assets/data/WLC_KOR.json";
+import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 export default function Wlc() {
   const [qaNum, setQaNum] = useState(1); // 문답 상태
-  console.log('qaNum', qaNum);
+  console.log("qaNum", qaNum);
 
   const recentView = useRef([]); // 최근 본 문답 목록 배열을 담을 Ref
 
@@ -32,12 +32,12 @@ export default function Wlc() {
     const thisNum = e.currentTarget.dataset.num;
     setQaNum(thisNum);
     setrecentView(thisNum);
-    localStorage.setItem('recentView', JSON.stringify(recentView.current));
+    localStorage.setItem("recentView", JSON.stringify(recentView.current));
   };
 
   // 새로고침 및 이동시에 recentView에 현재 localStorage 값을 넣어줌
   useEffect(() => {
-    recentView.current = JSON.parse(localStorage.getItem('recentView') ?? '[]');
+    recentView.current = JSON.parse(localStorage.getItem("recentView") ?? "[]");
   }, []);
 
   // 문답 리스트 렌더링
@@ -54,7 +54,7 @@ export default function Wlc() {
 
   // 최근 본 문답 렌더링
   const recentViewRender = JSON.parse(
-    localStorage.getItem('recentView') ?? '[]'
+    localStorage.getItem("recentView") ?? "[]"
   ).map((num, idx) => {
     return (
       <li key={idx}>
@@ -76,21 +76,24 @@ export default function Wlc() {
             1문부터 196문까지의 전체 목록을 탐색하고 원하는 문답을 찾아보세요.
           </p>
         </div>
-        <div className="search-area">
-          <input
-            type="search"
-            placeholder="키워드 및 번호로 문답 검색"
-            aria-label="검색어를 통한 대요리 문답 검색"
-          />
-          <button type="button">검색</button>
-        </div>
-        <ul className="question-list">{questionListRender}</ul>
         <div className="recent-view">
           <div className="title">
             <img src="/assets/images/recent-ico.png" alt="최근 목록 아이콘" />
             <h3>최근 본 문답</h3>
           </div>
           <ul className="recent-card-list">{recentViewRender}</ul>
+        </div>
+        <div className="all-list">
+          <h3>전체 문답 보기</h3>
+          <div className="search-area">
+            <input
+              type="search"
+              placeholder="키워드 및 번호로 문답 검색"
+              aria-label="검색어를 통한 대요리 문답 검색"
+            />
+            <button type="button">검색</button>
+          </div>
+          <ul className="question-list">{questionListRender}</ul>
         </div>
       </div>
     </div>
