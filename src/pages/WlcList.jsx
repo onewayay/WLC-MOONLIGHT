@@ -5,8 +5,15 @@ import { useState } from 'react';
 import { addRecentView, getRecentView } from '../utils/recentView';
 
 export default function Wlc() {
-  // 최근 본 문답 상태
-  const [recentView, setRecentView] = useState(() => getRecentView());
+  const [wlcList, setWlcList] = useState(kor_data); // 전체 문답 보기 상태
+
+  const [input, setInput] = useState(''); // 검색 input value 상태
+
+  const [hasSearched, setHasSearched] = useState(false); // 검색 여부 상태
+
+  const [recentView, setRecentView] = useState(() => getRecentView()); // 최근 본 문답 상태
+
+  const [searchedKeyword, setSearchedKeyword] = useState(''); // 검색버튼을 누른 검색어 상태
 
   // 문답 리스트 클릭 이벤트
   const onClickQuestion = (e) => {
@@ -17,12 +24,12 @@ export default function Wlc() {
   };
 
   // 문답 리스트 렌더링
-  const questionListRender = Object.entries(kor_data).map(([key, value]) => {
+  const questionListRender = Object.entries(wlcList).map(([key, value]) => {
     return (
       <li key={key} onClick={onClickQuestion} data-num={key}>
         <Link to={`/wlcview/${key}`}>
           <strong>{key}</strong>
-          <p>{value.Q}</p>
+          <p>{value.Q.join('')}</p>
         </Link>
       </li>
     );
@@ -40,6 +47,80 @@ export default function Wlc() {
       </li>
     );
   });
+
+  // 배열을 하나로 합치고 소문자로 변경후 대괄호 + 숫자 형태의 각주번호를 가진 내용은 제거하는 함수
+  const normalizeText = (arr) =>
+    arr
+      .join('')
+      .replace(/\[\d+\]/g, '')
+      .toLowerCase();
+
+  // 문자열을 검색하는 함수
+  const includesText = (arr, keyword) => {
+    const text = normalizeText(arr);
+    return text.includes(keyword);
+  };
+
+  // input 입력시 input 상태 변하는 함수
+  const onChageInput = (e) => {
+    setInput(e.currentTarget.value);
+  };
+
+  // 검색 버튼 클릭 이벤트 함수
+  const onClickSearch = () => {
+    const keyword = input.trim().toLowerCase();
+
+    if (!keyword) {
+      setHasSearched(false);
+      setWlcList(kor_data);
+      return;
+    }
+
+    setHasSearched(true);
+    setSearchedKeyword(input);
+
+    const isNumberKeyword = /^\d+$/.test(keyword);
+
+    const searchData = Object.entries(kor_data).reduce((acc, [key, value]) => {
+      // 숫자만 입력시 문답 번호만 매칭
+      if (isNumberKeyword) {
+        if (key === keyword) {
+          acc[key] = value;
+        }
+        return acc;
+      }
+
+      // 문자 포함시 Q, A 내용 검색
+      const qMatch = includesText(value.Q ?? [], keyword);
+      const aMatch = includesText(value.A ?? [], keyword);
+
+      if (qMatch || aMatch) {
+        acc[key] = value;
+      }
+
+      return acc;
+    }, {});
+
+    setWlcList(searchData);
+  };
+
+  // noResult에서 전체 문답 보기 버튼 클릭 이벤트
+  const onResetSearch = () => {
+    setInput('');
+    setHasSearched(false);
+    setWlcList(kor_data);
+  };
+
+  const noResult = (
+    <li className="no-result">
+      <p>
+        <strong>"{searchedKeyword}"</strong> 와(과) 일치하는 내용이 없습니다.
+      </p>
+      <button type="button" onClick={onResetSearch}>
+        전체 문답 보기
+      </button>
+    </li>
+  );
 
   return (
     <div className="wlc-list">
@@ -64,10 +145,17 @@ export default function Wlc() {
               type="search"
               placeholder="키워드 및 번호로 문답 검색"
               aria-label="검색어를 통한 대요리 문답 검색"
+              value={input}
+              onChange={onChageInput}
             />
-            <button type="button">검색</button>
+            <button type="button" onClick={onClickSearch}>
+              검색
+            </button>
           </div>
-          <ul className="question-list">{questionListRender}</ul>
+          <ul className="question-list">
+            {questionListRender}
+            {hasSearched && Object.keys(wlcList).length === 0 && noResult}
+          </ul>
         </div>
       </div>
     </div>
