@@ -1,71 +1,61 @@
-import { useState } from 'react';
-import kor_data from '../assets/data/WLC_KOR.json';
-import wlc_bible_kor from '../assets/data/wlc_bible_kor.json';
+import wlc_bible_kor from '../assets/data/wlc_bible_kor_v2.json';
+import wlc_bible_eng from '../assets/data/wlc_bible_eng_v2.json';
 import '../styles/annotation-collect.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
 export default function AnnotationCollect() {
-  // const navigate = useNavigate();
+  // 현재 보여질 문답 갯수 상태
+  const [visibleCount, setVisibleCount] = useState(20);
 
-  // const [searchVerse, setSearchVerse] = useState(''); // 검색어 상태
+  // 화면 맨 아래에서 스크롤이 아래로 내려왔는지 감지하는 역할
+  const observerRef = useRef(null);
 
-  // const allVerseList = []; // 전체 말씀 목록
+  useEffect(() => {
+    // obseverRef 생성 이전일 경우 바로 return
+    if (!observerRef.current) return;
 
-  // Object.keys(wlc_bible_kor).forEach((key) => {
-  //   allVerseList.push({
-  //     num: key,
-  //     verse: wlc_bible_kor[key],
-  //   });
-  // });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((prev) => {
+            if (prev >= wlc_bible_kor.length) return prev;
+            return prev + 20;
+          });
+        }
+      },
+      // thredshold: 얼마나 보여야 콜백을 실행할지. 0~1의 값. 1은 100% 화면에 들어왔을 때 실행
+      // rootMargin: 지정된 값만큼 이전에 미리 감지해서 콜백 실행
+      { threshold: 0, rootMargin: '200px' }
+    );
 
-  // // 관련 문답 바로가기 버튼 이벤트
-  // const goWlc = (e) => {
-  //   let wlcNum = null;
+    observer.observe(observerRef.current); // observerRef를 감지 대상으로 설정
 
-  //   for (let key in kor_data) {
-  //     if (kor_data[key].ref?.includes(Number(e.currentTarget.dataset.num))) {
-  //       wlcNum = key;
-  //       break;
-  //     }
-  //   }
+    return () => observer.disconnect(); // 클린업
+  }, []);
 
-  //   navigate(`/wlc?num=${wlcNum}`);
-  // };
+  // 데이터를 갯수 상태 만큼 자름
+  const visibleItems = wlc_bible_kor.slice(0, visibleCount);
 
-  // // 렌더링할 말씀 목록 상태
-  // const [verseList, setVerseList] = useState(allVerseList);
-
-  // // 실제 렌더링 될 말씀 리스트
-  // const renderVerseList = verseList.map((item) => {
-  //   return (
-  //     <li key={item.num}>
-  //       <strong>[{item.num}]</strong>
-  //       <div>
-  //         {item.verse.map((verse, idx) => (
-  //           <p key={idx}>{verse}</p>
-  //         ))}
-  //       </div>
-  //       <button type="button" data-num={item.num} onClick={goWlc}>
-  //         관련 문답 바로가기
-  //       </button>
-  //     </li>
-  //   );
-  // });
-
-  // // 검색어 상태 변경 이벤트
-  // const onChangeSearch = (e) => {
-  //   setSearchVerse(e.currentTarget.value);
-  // };
-
-  // // 검색 버튼 이벤트
-  // const onClickSearch = () => {
-  //   const searchedList = allVerseList.filter((item) =>
-  //     item.verse.some((v) => v.includes(searchVerse))
-  //   );
-  //   setVerseList(searchedList);
-  // };
-
-  // console.log('전체', allVerseList);
+  const verseRender = visibleItems.map((item, idx) => {
+    return (
+      <li key={item.id}>
+        <Link to={`/wlcview/${item.wlcNum}`}>
+          <div>
+            <div className="kor-verse">
+              <strong>{item.bible}</strong>
+              <p>{item.verse}</p>
+            </div>
+            <div className="eng-verse">
+              <strong>{wlc_bible_eng[idx].bible}</strong>
+              <p>{wlc_bible_eng[idx].verse}</p>
+            </div>
+          </div>
+          <span>{item.wlcNum} 문</span>
+        </Link>
+      </li>
+    );
+  });
 
   return (
     <div className="annotation-collect">
@@ -82,75 +72,9 @@ export default function AnnotationCollect() {
           />
           <button type="button">검색</button>
         </div>
-        <ul className="verse-list">
-          <li>
-            <Link to="">
-              <div>
-                <div className="kor-verse">
-                  <strong>요한복음 3:16</strong>
-                  <p>
-                    하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 그를
-                    믿는 자마다 멸망하지 않고 영생을 얻게 하려 하심이라
-                  </p>
-                </div>
-                <div className="eng-verse">
-                  <strong>John 3:16</strong>
-                  <p>
-                    For God so loved the world, that he gave his only begotten
-                    Son, that whosoever believeth in him should not perish, but
-                    have everlating life{' '}
-                  </p>
-                </div>
-              </div>
-              <span>32 문</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <div>
-                <div className="kor-verse">
-                  <strong>요한복음 3:16</strong>
-                  <p>
-                    하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 그를
-                    믿는 자마다 멸망하지 않고 영생을 얻게 하려 하심이라
-                  </p>
-                </div>
-                <div className="eng-verse">
-                  <strong>John 3:16</strong>
-                  <p>
-                    For God so loved the world, that he gave his only begotten
-                    Son, that whosoever believeth in him should not perish, but
-                    have everlating life{' '}
-                  </p>
-                </div>
-              </div>
-              <span>32 문</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="">
-              <div>
-                <div className="kor-verse">
-                  <strong>요한복음 3:16</strong>
-                  <p>
-                    하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 그를
-                    믿는 자마다 멸망하지 않고 영생을 얻게 하려 하심이라
-                  </p>
-                </div>
-                <div className="eng-verse">
-                  <strong>John 3:16</strong>
-                  <p>
-                    For God so loved the world, that he gave his only begotten
-                    Son, that whosoever believeth in him should not perish, but
-                    have everlating life{' '}
-                  </p>
-                </div>
-              </div>
-              <span>32 문</span>
-            </Link>
-          </li>
-        </ul>
+        <ul className="verse-list">{verseRender}</ul>
       </div>
+      <div ref={observerRef} style={{ height: 1 }} />
     </div>
   );
 }
