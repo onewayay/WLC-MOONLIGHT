@@ -1,7 +1,7 @@
-import Footer from "./components/layout/Footer";
-import Header from "./components/layout/Header";
-import "./styles/index.css";
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import Footer from './components/layout/Footer';
+import Header from './components/layout/Header';
+import './styles/index.css';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 function App() {
   return (
@@ -10,6 +10,9 @@ function App() {
       <Header />
       <main>
         <Outlet />
+        <button type="button" className="top-btn">
+          Top{' '}
+        </button>
       </main>
       <Footer />
     </>

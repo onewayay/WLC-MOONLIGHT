@@ -60,9 +60,9 @@ export default function Wlc() {
   ));
 
   // 최근 본 문답 렌더링
-  const recentViewRender = recentView.map((num, idx) => {
+  const recentViewRender = recentView.map((num) => {
     return (
-      <li key={idx}>
+      <li key={num}>
         <Link to={`/wlcview/${num}`}>
           <span>제 {num}문</span>
           <strong>{kor_data[num].Q}</strong>
@@ -73,7 +73,7 @@ export default function Wlc() {
   });
 
   // input 입력시 input 상태 변하는 함수
-  const onChageInput = (e) => {
+  const onChangeInput = (e) => {
     setInput(e.currentTarget.value);
   };
 
@@ -93,6 +93,7 @@ export default function Wlc() {
   // noResult에서 전체 문답 보기 버튼 클릭 이벤트
   const onResetSearch = () => {
     setInput('');
+    setSearchParams({});
   };
 
   const noResult = (
@@ -130,7 +131,7 @@ export default function Wlc() {
               placeholder="키워드 및 번호로 문답 검색"
               aria-label="검색어를 통한 대요리 문답 검색"
               value={input}
-              onChange={onChageInput}
+              onChange={onChangeInput}
             />
             <button type="button" onClick={onClickSearch}>
               검색

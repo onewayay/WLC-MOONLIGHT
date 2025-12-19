@@ -141,3 +141,14 @@
   width: 100%;
   max-width: 1280px;
 }
+main {
+  position: relative;
+}
+.top-btn {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  aspect-ratio: 1/1;
+  background-color: white;
+}
