@@ -47,6 +47,10 @@
   transition: 0.3s;
 }
 
+/* .annotation-collect .verse-list li:nth-child(even) {
+  background-color: transparent;
+} */
+
 .annotation-collect .verse-list li.no-result {
   display: flex;
   flex-direction: column;
@@ -98,8 +102,8 @@
   min-width: 60px;
   height: 36px;
   border-radius: 4px;
-  color: var(--color-primary);
-  background-color: var(--color-primary-opacity);
+  color: var(--color-white);
+  background-color: var(--color-box-bg);
   transition: 0.3s;
 }
 
@@ -120,6 +124,10 @@
 
 .annotation-collect .verse-list li p {
   color: var(--color-text-light-gray);
+}
+
+.annotation-collect .verse-list li:hover p {
+  color: var(--color-white);
 }
 
 /*

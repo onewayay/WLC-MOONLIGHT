@@ -31,7 +31,7 @@ export default function Footer() {
             target="_black"
             title="달빛교회 X 새창열림으로 이동"
           >
-            달빛교회 X
+            달빛교회 엑스
           </a>
         </div>
         <div className="copyright">
