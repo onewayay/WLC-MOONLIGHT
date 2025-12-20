@@ -19,13 +19,20 @@ export default function Header() {
             </h1>
           </div>
           <nav className="nav">
-            <Link to="">문답 보기</Link>
-            <Link to="">주석 모음</Link>
+            <Link to="/wlclist" className="nav-link">
+              문답 보기
+            </Link>
+            <Link to="/annotationcollect" className="nav-link">
+              주석 모음
+            </Link>
             <button
               type="button"
               className={`theme-btn ${theme}`}
               onClick={changeTheme}
             ></button>
+            <button type="button" className="mobile-menu">
+              모바일
+            </button>
           </nav>
         </div>
       </header>

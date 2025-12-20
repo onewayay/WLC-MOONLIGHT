@@ -1,19 +1,17 @@
-.wlc-list .inner {
-  padding: 60px 0;
-}
-
 .wlc-list .title h2 {
   font-size: 36px;
 }
 
 .wlc-list .title p {
+  margin-top: 4px;
   color: var(--color-text-light-gray);
 }
 
 /* ST: 최근 본 문답 */
 .wlc-list .recent-view {
-  margin-top: 60px;
+  margin-top: 50px;
 }
+
 .wlc-list .recent-view .title {
   display: flex;
   align-items: center;
@@ -57,11 +55,13 @@
   font-size: 13px;
   color: var(--color-primary);
 }
+
 .wlc-list .recent-view .recent-card-list li a strong {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .wlc-list .recent-view .recent-card-list li a p {
   font-size: 13px;
   color: var(--color-text-light-gray);
@@ -72,7 +72,7 @@
 
 /* ST: 전체 문답 보기 */
 .wlc-list .all-list {
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 .wlc-list .all-list > h3 {
@@ -107,7 +107,7 @@
 
 /* ST: 문답 리스트 */
 .wlc-list .all-list .question-list {
-  margin-top: 60px;
+  margin-top: 50px;
   border-top: 1px solid var(--color-light-border);
   border-bottom: 1px solid var(--color-light-border);
 }
@@ -153,7 +153,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 0;
+  padding: 16px 40px 16px 0;
   background: url(/assets/images/chevron-right-white.png) no-repeat right 16px
     center;
   background-size: 10px;
@@ -183,6 +183,205 @@
 /*
   반응형
 */
+
+/* 기본은 1440px이상의 Large PC */
+
+/* PC */
+@media (max-width: 1439px) {
+}
+
+/* Tablet */
+@media only screen and (max-width: 1279px) {
+  .wlc-list .title h2 {
+    font-size: 32px;
+  }
+
+  .wlc-list .title p {
+    font-size: 14px;
+  }
+
+  /* ST: 최근 본 문답 */
+  .wlc-list .recent-view {
+    margin-top: 40px;
+  }
+
+  .wlc-list .recent-view .title {
+    gap: 10px;
+  }
+
+  .wlc-list .recent-view .title img {
+    width: 23px;
+  }
+
+  .wlc-list .recent-view .title h3 {
+    font-size: 18px;
+  }
+
+  .wlc-list .recent-view .recent-card-list {
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li {
+    width: calc((100% - 24x) / 3);
+    border-radius: 10px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li:hover {
+    transform: translateY(0);
+  }
+
+  .wlc-list .recent-view .recent-card-list li a {
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li a span {
+    font-size: 12px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li a strong {
+    font-size: 15px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li a p {
+    font-size: 12px;
+  }
+
+  /* ST: 전체 문답 보기 */
+  .wlc-list .all-list {
+    margin-top: 40px;
+  }
+
+  .wlc-list .all-list > h3 {
+    font-size: 18px;
+  }
+
+  /* 검색 바 */
+  .wlc-list .all-list .search-area {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .wlc-list .all-list .search-area input {
+    padding: 8px 18px 8px 40px;
+    border-radius: 8px;
+    font-size: 14px;
+    background: url(/assets/images/zoom-ico.png) no-repeat 14px center;
+    background-size: 14px;
+    background-color: var(--color-box-bg);
+  }
+
+  .wlc-list .all-list .search-area button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  /* ST: 문답 리스트 */
+  .wlc-list .all-list .question-list {
+    margin-top: 30px;
+  }
+
+  .wlc-list .question-list li {
+    padding: 0 10px;
+  }
+
+  .wlc-list .question-list li.no-result {
+    gap: 40px;
+    padding: 60px 0;
+    font-size: 18px;
+  }
+
+  .wlc-list .question-list li.no-result button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .wlc-list .all-list .question-list li a {
+    gap: 12px;
+    padding: 14px 24px 14px 0;
+    font-size: 14px;
+    background: url(/assets/images/chevron-right-white.png) no-repeat right 8px
+      center;
+    background-size: 8px;
+  }
+
+  .wlc-list .all-list .question-list li a strong {
+    width: 32px;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .wlc-list .title h2 {
+    font-size: 28px;
+  }
+
+  .wlc-list .title p {
+    margin-top: 2px;
+  }
+
+  /* ST: 최근 본 문답 */
+  .wlc-list .recent-view .title {
+    gap: 8px;
+  }
+
+  .wlc-list .recent-view .title img {
+    width: 20px;
+  }
+
+  .wlc-list .recent-view .recent-card-list {
+    flex-direction: column;
+    margin-top: 16px;
+    gap: 8px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li {
+    width: 100%;
+  }
+
+  .wlc-list .recent-view .recent-card-list li a {
+    gap: 4px;
+    padding: 12px;
+  }
+
+  .wlc-list .recent-view .recent-card-list li a strong {
+    font-size: 14px;
+  }
+
+  /* ST: 전체 문답 보기 */
+  /* 검색 바 */
+  .wlc-list .all-list {
+    margin-top: 50px;
+  }
+
+  .wlc-list .all-list .search-area {
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  /* ST: 문답 리스트 */
+  .wlc-list .question-list li {
+    padding: 0 4px;
+  }
+
+  .wlc-list .question-list li.no-result {
+    font-size: 16px;
+  }
+
+  .wlc-list .all-list .question-list li a {
+    gap: 10px;
+    padding: 12px 20px 12px 0;
+    background: url(/assets/images/chevron-right-white.png) no-repeat right 4px
+      center;
+    background-size: 8px;
+  }
+
+  .wlc-list .all-list .question-list li a p {
+    flex: 1;
+  }
+}
 
 /*
   light 모드

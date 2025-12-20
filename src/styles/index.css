@@ -140,6 +140,7 @@
   margin: 0 auto;
   width: 100%;
   max-width: 1280px;
+  padding: 60px 0 100px;
 }
 
 main {
@@ -159,8 +160,6 @@ main {
 /* PC */
 @media (max-width: 1439px) {
   .inner {
-    margin: 0 auto;
-    width: 100%;
     max-width: 1100px;
   }
 }
@@ -168,19 +167,18 @@ main {
 /* 태블릿 */
 @media (max-width: 1279px) {
   .inner {
-    margin: 0 auto;
-    width: 100%;
     max-width: 100%;
-    padding: 0 30px;
+    padding: 40px 30px 80px;
   }
 }
 
 /* 모바일 */
 @media (max-width: 767px) {
   .inner {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    padding: 0 20px;
+    padding: 30px 20px 50px;
   }
 }
+
+/*
+  light 모드
+*/

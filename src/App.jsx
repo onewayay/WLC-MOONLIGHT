@@ -10,9 +10,9 @@ function App() {
       <Header />
       <main>
         <Outlet />
-        <button type="button" className="top-btn">
+        {/* <button type="button" className="top-btn">
           Top{' '}
-        </button>
+        </button> */}
       </main>
       <Footer />
     </>

@@ -2,9 +2,10 @@
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  padding: 14px 20px;
+  padding: 14px 0;
   border-bottom: 1px solid var(--color-border);
 }
+
 #header .logo a {
   display: block;
   width: 159px;
@@ -33,6 +34,10 @@
   height: 22px;
 }
 
+#header .nav .mobile-menu {
+  display: none;
+}
+
 #header .nav .theme-btn.dark {
   background: url(/assets/images/theme-sun.png) no-repeat center center / cover;
 }
@@ -41,7 +46,72 @@
   background: url(/assets/images/theme-moon.png) no-repeat center center / cover;
 }
 
-@media only screen and (max-width: 768px) {
+/*
+  반응형
+*/
+
+/* 기본은 1440px이상의 Large PC */
+
+/* PC */
+@media (max-width: 1439px) {
 }
-@media only screen and (max-width: 500px) {
+
+/* Tablet */
+@media only screen and (max-width: 1279px) {
+  #header .inner {
+    padding: 12px 30px;
+  }
+
+  #header .logo a {
+    display: block;
+    width: 138px;
+    height: 38px;
+  }
+
+  #header .nav {
+    gap: 20px;
+  }
+
+  #header .nav a {
+    font-size: 14px;
+  }
+
+  #header .nav .theme-btn {
+    width: 20px;
+    height: 20px;
+  }
 }
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  #header .inner {
+    padding: 12px 20px;
+  }
+
+  #header .logo a {
+    display: block;
+    width: 123px;
+    height: 34px;
+  }
+
+  #header .nav {
+    gap: 16px;
+  }
+
+  #header .nav a.nav-link {
+    display: none;
+  }
+
+  #header .nav .theme-btn {
+    width: 16px;
+    height: 16px;
+  }
+
+  #header .nav .mobile-menu {
+    display: block;
+  }
+}
+
+/*
+  light 모드
+*/
