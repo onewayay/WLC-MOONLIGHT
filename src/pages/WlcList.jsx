@@ -1,7 +1,7 @@
 import '../styles/wlclist.css';
 import kor_data from '../assets/data/WLC_KOR.json';
 import { Link, useSearchParams } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getRecentView } from '../utils/recentView';
 
 export default function Wlc() {
@@ -89,6 +89,11 @@ export default function Wlc() {
 
     setSearchParams({ q: keyword });
   };
+
+  // 마운트 이후에 keyword값을 input value로 설정해주기(뒤로 왔을때도 검색했던 내용 input에 남아 있도록)
+  useEffect(() => {
+    setInput(keyword);
+  }, [keyword]);
 
   // noResult에서 전체 문답 보기 버튼 클릭 이벤트
   const onResetSearch = () => {
