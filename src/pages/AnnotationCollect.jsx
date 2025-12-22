@@ -108,6 +108,12 @@ export default function AnnotationCollect() {
     setSearchParams({ q: keyword });
   };
 
+  const onKeyDownSearch = (e) => {
+    if (e.key === 'Enter') {
+      onClickSearch();
+    }
+  };
+
   // 마운트 이후에 keyword값을 input value로 설정해주기(뒤로 왔을때도 검색했던 내용 input에 남아 있도록)
   useEffect(() => {
     setInput(keyword);
@@ -145,6 +151,7 @@ export default function AnnotationCollect() {
             aria-label="검색어를 통한 각주 말씀 검색"
             value={input}
             onChange={onChageInput}
+            onKeyDown={onKeyDownSearch}
           />
           <button type="button" onClick={onClickSearch}>
             검색
