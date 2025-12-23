@@ -68,6 +68,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: 0.3s;
+}
+
+.wlc-list .recent-view .recent-card-list li:hover p {
+  color: var(--color-white);
 }
 
 /* ST: 전체 문답 보기 */
@@ -144,7 +149,7 @@
   background-color: var(--color-light-box-bg);
 }
 
-.wlc-list .question-list li.no-result:hover {
+.wlc-list .all-list .question-list li.no-result:hover {
   background-color: unset;
 }
 
@@ -384,3 +389,69 @@
 /*
   light 모드
 */
+
+body.light {
+  .wlc-list .title p {
+    color: var(--color-theme-light-text);
+  }
+
+  /* ST: 최근 본 문답 */
+  .wlc-list .recent-view .recent-card-list li {
+    border: 1px solid var(--color-theme-border);
+    background-color: var(--color-white);
+    box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .wlc-list .recent-view .recent-card-list li:hover {
+    background-color: none;
+  }
+
+  .wlc-list .recent-view .recent-card-list li a p {
+    color: var(--color-theme-light-text);
+  }
+
+  .wlc-list .recent-view .recent-card-list li:hover p {
+    color: var(--color-black);
+  }
+
+  /* ST: 전체 문답 보기 */
+  .wlc-list .all-list .search-area input {
+    background-color: var(--color-theme-box-bg);
+  }
+
+  .wlc-list .all-list .search-area input::placeholder {
+    color: var(--color-theme-light-text);
+  }
+
+  /* ST: 문답 리스트 */
+  .wlc-list .all-list .question-list {
+    border-top: 1px solid var(--color-theme-dark-border);
+    border-bottom: 1px solid var(--color-theme-dark-border);
+  }
+
+  .wlc-list .question-list li.no-result button {
+    background-color: var(--color-theme-dark-box-bg);
+  }
+
+  .wlc-list .question-list li.no-result button:hover {
+    background-color: var(--color-theme-dusky-box-bg);
+  }
+
+  .wlc-list .all-list .question-list li:hover {
+    background-color: var(--color-theme-light-box-bg);
+  }
+
+  .wlc-list .all-list .question-list li.no-result:hover {
+    background-color: unset;
+  }
+
+  .wlc-list .all-list .question-list li a {
+    background: url(/assets/images/chevron-right-black.png) no-repeat right 16px
+      center;
+    background-size: 10px;
+  }
+
+  .wlc-list .all-list .question-list li:not(:last-child) a {
+    border-bottom: 1px solid var(--color-theme-clear-border);
+  }
+}

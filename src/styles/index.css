@@ -150,6 +150,7 @@
 main {
   position: relative;
 }
+
 .top-btn {
   position: fixed;
   right: 50px;
@@ -186,3 +187,6 @@ main {
 /*
   light 모드
 */
+
+body.light {
+}

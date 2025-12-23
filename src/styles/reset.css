@@ -34,12 +34,23 @@
   --color-dark-border: rgba(255, 255, 255, 0.08);
   --color-light-border: rgba(255, 255, 255, 0.3);
   --color-text-light-gray: #a5aec2;
+
+  /* light theme color*/
+  --color-theme-bg: #f6f6f8;
+  --color-theme-border: #e3e5ea;
+  --color-theme-clear-border: rgba(0, 0, 0, 0.1);
+  --color-theme-dark-border: rgba(0, 0, 0, 0.3);
+  --color-theme-box-bg: #eaeaea;
+  --color-theme-dark-box-bg: #4a5568;
+  --color-theme-dusky-box-bg: #778194;
+  --color-theme-light-box-bg: #e3e5ea;
+  --color-theme-light-text: #4a5568;
 }
 
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   font-size: 16px;
   background-color: var(--color-midnight);
   color: var(--color-white);
@@ -121,4 +132,21 @@ textarea {
   overflow: auto;
   vertical-align: top;
   resize: vertical;
+}
+
+/*
+  light 모드
+*/
+
+body.light {
+  background-color: var(--color-theme-bg);
+  color: var(--color-black);
+
+  button {
+    color: var(--color-white);
+  }
+
+  a {
+    color: var(--color-black);
+  }
 }

@@ -120,6 +120,7 @@
 
 .annotation-collect .verse-list li p {
   color: var(--color-text-light-gray);
+  transition: 0.3s;
 }
 
 .annotation-collect .verse-list li:hover p {
@@ -254,3 +255,73 @@
 /*
   light 모드
 */
+
+body.light {
+  .annotation-collect .title p {
+    color: var(--color-theme-light-text);
+  }
+
+  /* ST: 검색 바 */
+
+  .annotation-collect .search-area input {
+    background-color: var(--color-theme-box-bg);
+  }
+
+  .annotation-collect .search-area input::placeholder {
+    color: var(--color-theme-light-text);
+  }
+
+  /* ST: 각주 리스트 */
+
+  .annotation-collect .verse-list {
+    border: 1px solid var(--color-theme-border);
+    background-color: var(--color-white);
+    box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .annotation-collect .verse-list li {
+    background-color: none;
+    transition: 0.3s;
+  }
+
+  .annotation-collect .verse-list li.no-result button {
+    background-color: var(--color-theme-dark-box-bg);
+  }
+
+  .annotation-collect .verse-list li.no-result button:hover {
+    background-color: var(--color-theme-dusky-box-bg);
+  }
+
+  .annotation-collect .verse-list li:not(:last-child) {
+    border-bottom: 1px solid var(--color-theme-clear-border);
+  }
+
+  .annotation-collect .verse-list li:hover {
+    background-color: var(--color-theme-light-box-bg);
+  }
+
+  .annotation-collect .verse-list li.no-result:hover {
+    background-color: unset;
+  }
+
+  .annotation-collect .verse-list li a span {
+    /**/
+    color: var(--color-black);
+    background-color: var(--color-theme-box-bg);
+    transition: 0.3s;
+  }
+
+  .annotation-collect .verse-list li:hover a span {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .annotation-collect .verse-list li p {
+    color: var(--color-theme-light-text);
+    transition: 0.3s;
+  }
+
+  .annotation-collect .verse-list li:hover p {
+    color: var(--color-black);
+  }
+}

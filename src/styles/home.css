@@ -293,3 +293,47 @@
 /*
   light 모드
 */
+
+body.light {
+  /* ST: main-banner */
+  .home .main-banner .banner-text h2 {
+    color: var(--color-white);
+  }
+
+  .home .main-banner .banner-text p {
+    margin-top: 24px;
+    color: var(--color-white);
+  }
+
+  .home .main-banner .banner-btns a {
+    color: var(--color-white);
+  }
+
+  .home .main-banner .banner-btns a:first-child {
+    background-color: var(--color-primary);
+  }
+  .home .main-banner .banner-btns a:last-child {
+    border: 1px solid var(--color-border);
+    background-color: var(--color-light-box-bg);
+  }
+
+  /* ST: section */
+
+  .home section .card-links li {
+    border: 1px solid var(--color-theme-border);
+    background-color: var(--color-white);
+    box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .home section .card-links li:hover {
+    background-color: none;
+  }
+
+  .home section .card-links li p {
+    color: var(--color-theme-light-text);
+  }
+
+  .home section .card-links li:hover p {
+    color: var(--color-black);
+  }
+}

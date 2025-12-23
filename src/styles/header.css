@@ -134,6 +134,7 @@
   font-size: 36px;
   font-weight: bold;
 }
+
 /*
   반응형
 */
@@ -203,3 +204,27 @@
 /*
   light 모드
 */
+
+body.light {
+  #header .inner {
+    border-bottom: 1px solid var(--color-theme-dark-border);
+  }
+
+  #header .logo a {
+    background: url(/assets/images/logo-black.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  #header .nav .mobile-menu-btn span {
+    background-color: var(--color-black);
+  }
+
+  /* ST: 모바일 메뉴 */
+  #header .mobile-menu {
+    background-color: var(--color-theme-bg);
+  }
+
+  #header .mobile-menu > button span {
+    background-color: var(--color-black);
+  }
+}

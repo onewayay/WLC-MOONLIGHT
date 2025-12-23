@@ -369,3 +369,49 @@
 /*
   light 모드
 */
+
+body.light {
+  .wlc-view .title {
+    border-bottom: 5px solid var(--color-theme-clear-border);
+  }
+
+  .wlc-view .title .move-btns button:first-child {
+    background-color: var(--color-theme-dusky-box-bg);
+  }
+
+  .wlc-view .title .move-btns button:nth-child(2) {
+    background-color: var(--color-theme-dusky-box-bg);
+  }
+
+  .wlc-view .title a {
+    color: var(--color-white);
+    background-color: var(--color-theme-dusky-box-bg);
+  }
+
+  /* ST: qna */
+
+  .wlc-view .qna {
+    border-bottom: 1px solid var(--color-theme-clear-border);
+  }
+
+  .wlc-view .qna .question {
+    border-bottom: 1px solid var(--color-theme-clear-border);
+  }
+
+  .wlc-view .qna p,
+  .wlc-view .qna pre {
+    color: #333;
+  }
+
+  /* ST: footnote */
+
+  .wlc-view .footnote .verse-list li {
+    border: 1px solid var(--color-theme-border);
+    background-color: var(--color-white);
+    box-shadow: 1px 3px 3px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .wlc-view .footnote .verse-list li p {
+    color: var(--color-theme-light-text);
+  }
+}
