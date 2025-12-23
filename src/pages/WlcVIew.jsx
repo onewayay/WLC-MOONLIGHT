@@ -31,11 +31,11 @@ export default function WlcView() {
 
   const onClickPrev = () => {
     if (Number(qaNum) === 1) return;
-    navigate(`/wlcview/${Number(qaNum) - 1}`);
+    navigate(`/wlc/${Number(qaNum) - 1}`);
   };
   const onClickNext = () => {
     if (Number(qaNum) === 196) return;
-    navigate(`/wlcview/${Number(qaNum) + 1}`);
+    navigate(`/wlc/${Number(qaNum) + 1}`);
   };
 
   // 각주 렌더링
@@ -80,7 +80,7 @@ export default function WlcView() {
             <button type="button" onClick={onClickNext}>
               다음 문답
             </button>
-            <Link to="/wlclist">리스트로 돌아가기</Link>
+            <Link to="/wlc">리스트로 돌아가기</Link>
           </div>
         </div>
         <div className="qna">

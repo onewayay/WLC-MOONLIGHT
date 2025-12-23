@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
-import Header from '../components/layout/Header';
 import '../styles/home.css';
-import Wlc from './WlcList';
-import AnnotationCollect from './AnnotationCollect';
 
 export default function Home() {
   return (
@@ -21,15 +18,15 @@ export default function Home() {
             </p>
           </div>
           <div className="banner-btns">
-            <Link to="wlclist">대요리 문답 보기</Link>
-            <Link to="annotationcollect">각주 모음 보기</Link>
+            <Link to="/wlc">대요리 문답 보기</Link>
+            <Link to="/annotationcollect">각주 모음 보기</Link>
           </div>
         </div>
         <section>
           <h3>주요 콘텐츠</h3>
           <ul className="card-links">
             <li>
-              <Link to="wlclist">
+              <Link to="/wlc">
                 <div className="title">
                   <div className="ico-box">
                     <img src="/assets/images/book-ico.png" alt="책 아이콘" />
@@ -44,7 +41,7 @@ export default function Home() {
               </Link>
             </li>
             <li>
-              <Link to="annotationcollect">
+              <Link to="/annotationcollect">
                 <div className="title">
                   <div className="ico-box">
                     <img src="/assets/images/note-ico.png" alt="노트 아이콘" />

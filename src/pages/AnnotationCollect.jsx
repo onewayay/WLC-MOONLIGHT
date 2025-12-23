@@ -71,7 +71,7 @@ export default function AnnotationCollect() {
   const verseRender = visibleItems.map((item) => {
     return (
       <li key={item.id}>
-        <Link to={`/wlcview/${item.wlcNum}`}>
+        <Link to={`/wlc/${item.wlcNum}`}>
           <div>
             <div className="kor-verse">
               <strong>{item.bible}</strong>

@@ -52,7 +52,7 @@ export default function Wlc() {
   // 문답 리스트 렌더링
   const questionListRender = filteredList.map((item) => (
     <li key={item.wlcNum}>
-      <Link to={`/wlcview/${item.wlcNum}`}>
+      <Link to={`/wlc/${item.wlcNum}`}>
         <strong>{item.wlcNum}</strong>
         <p>{item.Q.join('')}</p>
       </Link>
@@ -63,7 +63,7 @@ export default function Wlc() {
   const recentViewRender = recentView.map((num) => {
     return (
       <li key={num}>
-        <Link to={`/wlcview/${num}`}>
+        <Link to={`/wlc/${num}`}>
           <span>제 {num}문</span>
           <strong>{kor_data[num].Q}</strong>
           <p>{kor_data[num].A}</p>
