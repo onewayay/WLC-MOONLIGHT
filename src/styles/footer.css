@@ -40,7 +40,7 @@
   aspect-ratio: 1/1;
   border: 1px solid var(--color-white);
   border-radius: 50%;
-  background-image: url(/public/assets/images/chevron-double-up-white.png);
+  background-image: url(/assets/images/chevron-double-up-white.png);
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -50,7 +50,7 @@
 }
 
 #footer .top-btn:hover {
-  background-image: url(/public/assets/images/chevron-double-up-midnight.png);
+  background-image: url(/assets/images/chevron-double-up-midnight.png);
   background-color: var(--color-white);
   opacity: 100%;
 }
