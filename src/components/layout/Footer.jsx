@@ -1,6 +1,14 @@
 import '../../styles/footer.css';
 
 export default function Footer() {
+  // 탑 버튼 이벤트
+  const onClickTop = () => {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer id="footer">
       <div className="inner">
@@ -42,6 +50,12 @@ export default function Footer() {
           </p>
           <p>Copyright © 2025 달빛교회 All rights reserved.</p>
         </div>
+        <button
+          type="button"
+          className="top-btn"
+          aria-label="페이지 최상단으로 이동하기"
+          onClick={onClickTop}
+        ></button>
       </div>
     </footer>
   );

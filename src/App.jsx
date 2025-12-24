@@ -23,9 +23,6 @@ function App() {
           <Header />
           <main>
             <Outlet />
-            {/* <button type="button" className="top-btn">
-          Top{' '}
-          </button> */}
           </main>
           <Footer />
         </LangContext.Provider>
