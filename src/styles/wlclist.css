@@ -446,9 +446,7 @@ body.light {
   }
 
   .wlc-list .all-list .question-list li a {
-    background: url(/assets/images/chevron-right-black.png) no-repeat right 16px
-      center;
-    background-size: 10px;
+    background-image: url(/assets/images/chevron-right-black.png);
   }
 
   .wlc-list .all-list .question-list li:not(:last-child) a {

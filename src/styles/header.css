@@ -38,6 +38,10 @@
   color: var(--color-primary);
 }
 
+#header .nav .lang-btn {
+  display: none;
+}
+
 #header .nav .theme-btn {
   width: 22px;
   height: 22px;
@@ -191,9 +195,26 @@
     display: none;
   }
 
+  #header .nav .lang-btn {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--color-text-light-gray);
+  }
+
+  #header .nav .lang-btn span {
+    transition: 0.2s;
+  }
+
+  #header .nav .lang-btn span.active {
+    color: var(--color-primary);
+    font-size: 16px;
+  }
+
   #header .nav .theme-btn {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   #header .nav .mobile-menu-btn {
@@ -226,5 +247,9 @@ body.light {
 
   #header .mobile-menu > button span {
     background-color: var(--color-black);
+  }
+
+  #header .nav .lang-btn {
+    color: var(--color-black);
   }
 }

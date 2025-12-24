@@ -250,6 +250,18 @@
   .annotation-collect .verse-list li a strong {
     margin-bottom: 8px;
   }
+
+  .annotation-collect .verse-list li a .eng-verse strong {
+    display: block;
+  }
+
+  .annotation-collect .verse-list li a > div > div {
+    display: none;
+  }
+
+  .annotation-collect .verse-list li a > div > div.active {
+    display: block;
+  }
 }
 
 /*

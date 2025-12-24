@@ -2,10 +2,13 @@ import wlc_bible_kor from '../assets/data/wlc_bible_kor_v2.json';
 import wlc_bible_eng from '../assets/data/wlc_bible_eng_v2.json';
 import '../styles/annotation-collect.css';
 import { Link, useSearchParams } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { LangContext } from '../context/LangContext';
 
 export default function AnnotationCollect() {
   const [searchParams, setSearchParams] = useSearchParams(); // 검색어 쿼리
+
+  const { lang } = useContext(LangContext); // 언어 상태 컨텍스트
 
   const [visibleCount, setVisibleCount] = useState(20); // 현재 보여질 문답 갯수 상태
 
@@ -73,11 +76,11 @@ export default function AnnotationCollect() {
       <li key={item.id}>
         <Link to={`/wlc/${item.wlcNum}`}>
           <div>
-            <div className="kor-verse">
+            <div className={`kor-verse ${lang === 'kor' ? 'active' : ''}`}>
               <strong>{item.bible}</strong>
               <p>{item.verse}</p>
             </div>
-            <div className="eng-verse">
+            <div className={`eng-verse ${lang === 'kor' ? '' : 'active'}`}>
               <strong>{wlc_bible_eng[item.id - 1].bible}</strong>
               <p>{wlc_bible_eng[item.id - 1].verse}</p>
             </div>

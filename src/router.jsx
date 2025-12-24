@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import AnnotationCollect from './pages/AnnotationCollect';
 import NotFound from './pages/NotFound';
 import WlcList from './pages/WlcList';
-import WlcView from './pages/WlcView';
+import WlcView from './pages/WlcVIew';
 
 const router = createBrowserRouter([
   {
