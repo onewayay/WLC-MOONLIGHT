@@ -156,7 +156,6 @@
 
   .annotation-collect .search-area input {
     padding: 8px 18px 8px 40px;
-    font-size: 14px;
     background: url(/assets/images/zoom-ico.png) no-repeat 14px center;
     background-size: 14px;
     background-color: var(--color-box-bg);
