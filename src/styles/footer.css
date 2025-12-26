@@ -146,12 +146,12 @@ body.light {
   #footer .top-btn {
     border: 1px solid var(--color-primary);
     border-radius: 50%;
-    background-image: url(/public/assets/images/chevron-double-up-blue.png);
+    background-image: url(/assets/images/chevron-double-up-blue.png);
     opacity: 100%;
   }
 
   #footer .top-btn:hover {
-    background-image: url(/public/assets/images/chevron-double-up-white.png);
+    background-image: url(/assets/images/chevron-double-up-white.png);
     background-color: var(--color-primary);
   }
 }
