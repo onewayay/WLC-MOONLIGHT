@@ -155,15 +155,3 @@ body.light {
     background-color: var(--color-primary);
   }
 }
-
-/* 제일 아래에 추가 */
-@media (max-width: 767px) {
-  body.light {
-    #footer .top-btn {
-      opacity: 50%;
-    }
-    #footer .top-btn:hover {
-      opacity: 100%;
-    }
-  }
-}
