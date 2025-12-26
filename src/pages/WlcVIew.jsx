@@ -7,6 +7,8 @@ import wlc_bible_eng from '../assets/data/wlc_bible_eng_v2.json';
 import { useContext, useEffect } from 'react';
 import { addRecentView } from '../utils/recentView';
 import { LangContext } from '../context/LangContext';
+import { useTitle } from '../hooks/useTitle';
+import { useMetaDescription } from '../hooks/useMetaDescription';
 
 export default function WlcView() {
   const { qaNum } = useParams(); // 현재 페이지의 문답 숫자
@@ -57,6 +59,12 @@ export default function WlcView() {
     if (!qaNum) return;
     addRecentView(qaNum);
   }, [qaNum]);
+
+  // title 및 meta description 설정
+  useTitle(`대요리 문답 제 ${qaNum}문 - WLC MOONLIGHT`);
+  useMetaDescription(
+    `웨스트민스터 대요리문답 제 ${qaNum}문에 대한 질문과 답변, 그리고 관련 성경 구절을 제공합니다.`
+  );
 
   return (
     <div className="wlc-view">

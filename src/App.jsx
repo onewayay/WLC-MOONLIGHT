@@ -5,6 +5,7 @@ import './styles/index.css';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
 import { LangContext } from './context/LangContext';
+import { useTitle } from './hooks/useTitle';
 
 function App() {
   const [theme, setTheme] = useState('dark'); // theme 상태
@@ -14,6 +15,8 @@ function App() {
     document.body.classList.remove('dark', 'light');
     document.body.classList.add(theme);
   }, [theme]);
+
+  useTitle('WLC MOONLIGHT');
 
   return (
     <>

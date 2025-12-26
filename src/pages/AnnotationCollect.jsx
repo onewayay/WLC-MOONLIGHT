@@ -4,6 +4,8 @@ import '../styles/annotation-collect.css';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { LangContext } from '../context/LangContext';
+import { useTitle } from '../hooks/useTitle';
+import { useMetaDescription } from '../hooks/useMetaDescription';
 
 export default function AnnotationCollect() {
   const [searchParams, setSearchParams] = useSearchParams(); // 검색어 쿼리
@@ -138,6 +140,18 @@ export default function AnnotationCollect() {
         전체 문답 보기
       </button>
     </li>
+  );
+
+  // title 및 meta description 설정
+  useTitle(
+    hasSearched
+      ? `"${keyword}" 검색 결과 - 각주 모음 | WLC MOONLIGHT`
+      : '각주 모음 - WLC MOONLIGHT'
+  );
+  useMetaDescription(
+    hasSearched
+      ? `"${keyword}"와(과) 관련된 성경 구절 검색 결과입니다. 웨스트민스터 대요리문답에 인용된 말씀을 확인해 보세요.`
+      : '웨스트민스터 대요리문답에 인용된 모든 성경 구절을 한곳에 모아 제공하며, 각 문답과 연결된 말씀을 쉽게 확인할 수 있습니다.'
   );
 
   return (

@@ -3,6 +3,8 @@ import kor_data from '../assets/data/WLC_KOR.json';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import { getRecentView } from '../utils/recentView';
+import { useTitle } from '../hooks/useTitle';
+import { useMetaDescription } from '../hooks/useMetaDescription';
 
 export default function Wlc() {
   const [searchParams, setSearchParams] = useSearchParams(); // 검색어 쿼리
@@ -116,6 +118,18 @@ export default function Wlc() {
         전체 문답 보기
       </button>
     </li>
+  );
+
+  // title 및 meta description 설정
+  useTitle(
+    hasSearched
+      ? `"${keyword}" 검색 결과 - 문답 보기 | WLC MOONLIGHT`
+      : '문답 보기 - WLC MOONLIGHT'
+  );
+  useMetaDescription(
+    hasSearched
+      ? `"${keyword}"에 대한 웨스트민스터 대요리문답 검색 결과입니다. 관련 문답을 확인해 보세요.`
+      : '웨스트민스터 대요리문답 1문부터 196문까지의 전체 리스트을 제공하며, 각 문답과 관련 성경 구절을 자세히 확인할 수 있습니다.'
   );
 
   return (
