@@ -6,6 +6,21 @@
   z-index: 1;
 }
 
+#header .dim {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+#header .dim.active {
+  display: block;
+}
+
 #header .inner {
   display: flex;
   align-items: stretch;
@@ -91,60 +106,107 @@
 }
 
 /* ST: 모바일 메뉴 */
+
 #header .mobile-menu {
-  display: none;
+  display: flex;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--color-midnight);
+  top: 70px;
+  right: 20px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
   transition: 0.3s;
+  pointer-events: none;
   z-index: 10;
 }
 
 #header .mobile-menu.open {
-  display: block;
+  display: flex;
+  pointer-events: auto;
+}
+
+#header .mobile-menu a,
+#header .mobile-menu button {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: 0.15s ease-in-out;
+  transition-delay: 0s;
+}
+
+#header .mobile-menu.open a,
+#header .mobile-menu.open > button {
+  opacity: 1;
+  transition: 0.3s ease-in-out;
+  transform: translateY(0);
+}
+
+#header .mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#header .mobile-menu.open a:nth-child(1) {
+  transition-delay: 0s;
+}
+
+#header .mobile-menu.open a:nth-child(2) {
+  transition-delay: 0.05s;
+}
+
+#header .mobile-menu.open a:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+#header .mobile-menu a > div {
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #d9d9d9;
+}
+
+#header .mobile-menu a:first-child > div {
+  background-image: url(/assets/images/home-ico-midnight.png);
+  background-size: 16px;
+}
+#header .mobile-menu a:nth-child(2) > div {
+  background-image: url(/assets/images/book-ico-midnight.png);
+  background-size: 19px;
+}
+#header .mobile-menu a:last-of-type > div {
+  background-image: url(/assets/images/note-ico-midnight.png);
+  background-size: 18px;
 }
 
 #header .mobile-menu > button {
-  position: absolute;
-  top: 16px;
-  right: 20px;
-  width: 26px;
+  position: relative;
+  width: 40px;
   aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+#header .mobile-menu.open > button {
+  transition-delay: 0.15s;
 }
 
 #header .mobile-menu > button span {
   position: absolute;
   top: 50%;
-  right: 0;
-  width: 100%;
-  height: 1px;
+  left: 50%;
+  width: 20px;
+  height: 2px;
   background-color: var(--color-white);
 }
 
 #header .mobile-menu > button span:first-child {
-  transform: rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 #header .mobile-menu > button span:last-child {
-  transform: rotate(-45deg);
-}
-
-#header .mobile-menu .mobile-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-#header .mobile-menu .mobile-nav a {
-  font-size: 36px;
-  font-weight: bold;
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /*
@@ -253,12 +315,8 @@ body.light {
   }
 
   /* ST: 모바일 메뉴 */
-  #header .mobile-menu {
-    background-color: var(--color-theme-bg);
-  }
-
-  #header .mobile-menu > button span {
-    background-color: var(--color-black);
+  #header .mobile-menu a {
+    color: var(--color-white);
   }
 
   #header .nav .lang-btn {

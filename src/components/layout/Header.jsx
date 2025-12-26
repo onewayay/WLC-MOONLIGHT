@@ -56,6 +56,7 @@ export default function Header() {
   return (
     <>
       <header id="header">
+        <div className={`dim ${isMoMenuOpen ? 'active' : ''}`}></div>
         <div className="inner">
           <div className="logo">
             <h1 id="logo">
@@ -94,6 +95,8 @@ export default function Header() {
               className="mobile-menu-btn"
               onClick={openMoMenu}
               aria-label="모바일 메뉴 열기"
+              aria-controls="mobile-menu"
+              aria-expanded={isMoMenuOpen}
             >
               <span></span>
               <span></span>
@@ -101,7 +104,28 @@ export default function Header() {
             </button>
           </nav>
         </div>
-        <div className={`mobile-menu ${isMoMenuOpen ? 'open' : ''}`}>
+        <div
+          id="mobile-menu"
+          className={`mobile-menu ${isMoMenuOpen ? 'open' : ''}`}
+          aria-hidden={!isMoMenuOpen}
+          role="navigation"
+        >
+          <Link to="/" className="nav-link" onClick={closeMoMenu}>
+            홈으로
+            <div></div>
+          </Link>
+          <Link to="/wlc" className="nav-link" onClick={closeMoMenu}>
+            문답 보기
+            <div></div>
+          </Link>
+          <Link
+            to="/annotationcollect"
+            className="nav-link"
+            onClick={closeMoMenu}
+          >
+            각주 모음
+            <div></div>
+          </Link>
           <button
             type="button"
             onClick={closeMoMenu}
@@ -110,17 +134,6 @@ export default function Header() {
             <span></span>
             <span></span>
           </button>
-          <div className="mobile-nav">
-            <Link to="/" className="nav-link">
-              홈으로
-            </Link>
-            <Link to="/wlc" className="nav-link">
-              문답 보기
-            </Link>
-            <Link to="/annotationcollect" className="nav-link">
-              각주 모음
-            </Link>
-          </div>
         </div>
       </header>
     </>
