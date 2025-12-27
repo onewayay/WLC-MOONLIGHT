@@ -334,7 +334,7 @@
   }
 
   .wlc-list .recent-view .recent-card-list {
-    flex-direction: column;
+    flex-direction: column-reverse;
     margin-top: 16px;
     gap: 8px;
   }
