@@ -24,22 +24,36 @@ export default function AnnotationCollect() {
 
   // 렌더링에 필요한 자료 리스트
   const filteredList = useMemo(() => {
-    if (!keyword) return wlc_bible_kor; // 쿼리 없으면 wlc_bible_kor 데이터 전체
+    if (!keyword) return wlc_bible_kor;
 
-    // 검색어가 숫자인지 여부
     const isNumberKeyword = /^\d+$/.test(keyword);
 
-    return wlc_bible_kor.filter((item) => {
+    return wlc_bible_kor.filter((korItem) => {
+      const engItem = wlc_bible_eng[korItem.id - 1];
+
       if (isNumberKeyword) {
-        return String(item.wlcNum) === keyword;
+        return String(korItem.wlcNum) === keyword;
       }
 
-      return (
-        item.bible.toLowerCase().includes(keyword) ||
-        item.verse.toLowerCase().includes(keyword)
-      );
+      if (lang === 'kor') {
+        return (
+          korItem.bible.toLowerCase().includes(keyword) ||
+          korItem.verse.toLowerCase().includes(keyword)
+        );
+      } else {
+        return (
+          engItem.bible.toLowerCase().includes(keyword) ||
+          engItem.verse.toLowerCase().includes(keyword)
+        );
+      }
     });
-  }, [keyword]);
+  }, [keyword, lang]);
+
+  useEffect(() => {
+    setInput('');
+    setSearchParams({});
+    setVisibleCount(20);
+  }, [lang, setSearchParams]);
 
   // 화면 맨 아래에서 스크롤이 아래로 내려왔는지 감지하는 역할
   const observerRef = useRef(null);
