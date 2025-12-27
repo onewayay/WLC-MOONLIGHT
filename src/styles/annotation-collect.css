@@ -43,6 +43,11 @@
 }
 
 .annotation-collect .verse-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 40px 20px 20px;
   background-color: var(--color-box-bg);
   transition: 0.3s;
 }
@@ -84,14 +89,6 @@
 
 .annotation-collect .verse-list li a {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 40px 20px 20px;
-}
-
-.annotation-collect .verse-list li a span {
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 60px;
@@ -103,18 +100,18 @@
   transition: 0.3s;
 }
 
-.annotation-collect .verse-list li:hover a span {
+.annotation-collect .verse-list li:hover a {
   background-color: var(--color-primary);
   color: var(--color-white);
 }
 
-.annotation-collect .verse-list li a strong {
+.annotation-collect .verse-list li strong {
   margin-bottom: 4px;
   display: inline-block;
   font-size: 18px;
 }
 
-.annotation-collect .verse-list li a .eng-verse strong {
+.annotation-collect .verse-list li .eng-verse strong {
   display: none;
 }
 
@@ -173,6 +170,12 @@
     border-radius: 12px;
   }
 
+  .annotation-collect .verse-list li {
+    gap: 20px;
+    padding: 16px;
+    font-size: 14px;
+  }
+
   .annotation-collect .verse-list li.no-result {
     gap: 40px;
     padding: 60px 0;
@@ -185,12 +188,6 @@
   }
 
   .annotation-collect .verse-list li a {
-    gap: 20px;
-    padding: 16px;
-    font-size: 14px;
-  }
-
-  .annotation-collect .verse-list li a span {
     width: 50px;
     min-width: 50px;
     height: 30px;
@@ -198,7 +195,7 @@
     font-size: 14px;
   }
 
-  .annotation-collect .verse-list li a strong {
+  .annotation-collect .verse-list li strong {
     font-size: 16px;
   }
 }
@@ -230,12 +227,12 @@
     font-size: 16px;
   }
 
-  .annotation-collect .verse-list li a {
+  .annotation-collect .verse-list li {
     position: relative;
     gap: 0;
   }
 
-  .annotation-collect .verse-list li a span {
+  .annotation-collect .verse-list li a {
     position: absolute;
     top: 12px;
     right: 16px;
@@ -246,19 +243,19 @@
     font-size: 12px;
   }
 
-  .annotation-collect .verse-list li a strong {
+  .annotation-collect .verse-list li strong {
     margin-bottom: 8px;
   }
 
-  .annotation-collect .verse-list li a .eng-verse strong {
+  .annotation-collect .verse-list li .eng-verse strong {
     display: block;
   }
 
-  .annotation-collect .verse-list li a > div > div {
+  .annotation-collect .verse-list li > div > div {
     display: none;
   }
 
-  .annotation-collect .verse-list li a > div > div.active {
+  .annotation-collect .verse-list li > div > div.active {
     display: block;
   }
 }
@@ -315,14 +312,14 @@ body.light {
     background-color: unset;
   }
 
-  .annotation-collect .verse-list li a span {
+  .annotation-collect .verse-list li a {
     /**/
     color: var(--color-black);
     background-color: var(--color-theme-box-bg);
     transition: 0.3s;
   }
 
-  .annotation-collect .verse-list li:hover a span {
+  .annotation-collect .verse-list li:hover a {
     background-color: var(--color-primary);
     color: var(--color-white);
   }

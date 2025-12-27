@@ -53,7 +53,7 @@ export default function AnnotationCollect() {
     setInput('');
     setSearchParams({});
     setVisibleCount(20);
-  }, [lang, setSearchParams]);
+  }, [lang]);
 
   // 화면 맨 아래에서 스크롤이 아래로 내려왔는지 감지하는 역할
   const observerRef = useRef(null);
@@ -90,19 +90,17 @@ export default function AnnotationCollect() {
   const verseRender = visibleItems.map((item) => {
     return (
       <li key={item.id}>
-        <Link to={`/wlc/${item.wlcNum}`}>
-          <div>
-            <div className={`kor-verse ${lang === 'kor' ? 'active' : ''}`}>
-              <strong>{item.bible}</strong>
-              <p>{item.verse}</p>
-            </div>
-            <div className={`eng-verse ${lang === 'kor' ? '' : 'active'}`}>
-              <strong>{wlc_bible_eng[item.id - 1].bible}</strong>
-              <p>{wlc_bible_eng[item.id - 1].verse}</p>
-            </div>
+        <div>
+          <div className={`kor-verse ${lang === 'kor' ? 'active' : ''}`}>
+            <strong>{item.bible}</strong>
+            <p>{item.verse}</p>
           </div>
-          <span>{item.wlcNum} 문</span>
-        </Link>
+          <div className={`eng-verse ${lang === 'kor' ? '' : 'active'}`}>
+            <strong>{wlc_bible_eng[item.id - 1].bible}</strong>
+            <p>{wlc_bible_eng[item.id - 1].verse}</p>
+          </div>
+        </div>
+        <Link to={`/wlc/${item.wlcNum}`}>{item.wlcNum} 문 </Link>
       </li>
     );
   });

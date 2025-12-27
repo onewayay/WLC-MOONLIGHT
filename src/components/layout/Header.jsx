@@ -71,7 +71,7 @@ export default function Header() {
               문답 보기
             </NavLink>
             <NavLink to="/annotationcollect" className="nav-link">
-              주석 모음
+              각주 모음
             </NavLink>
             {showLangBtn && (
               <button
