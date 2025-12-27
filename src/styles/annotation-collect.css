@@ -35,8 +35,27 @@
 
 /* ST: 각주 리스트 */
 
-.annotation-collect .verse-list {
+.annotation-collect .verse-section {
   margin-top: 60px;
+}
+
+.annotation-collect .verse-section .info {
+  text-align: right;
+}
+
+.annotation-collect .verse-section .info span {
+  padding-left: 21px;
+  font-size: 15px;
+  font-weight: 200;
+  color: var(--color-text-light-gray);
+  background-image: url(/public/assets/images/info-ico-dark.png);
+  background-repeat: no-repeat;
+  background-position: 0 center;
+  background-size: 15px;
+}
+
+.annotation-collect .verse-list {
+  margin-top: 8px;
   border: 1px solid var(--color-border);
   border-radius: 12px;
   overflow: hidden;
@@ -91,8 +110,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  min-width: 60px;
+  gap: 8px;
+  width: 70px;
+  min-width: 70px;
   height: 36px;
   border-radius: 4px;
   color: var(--color-white);
@@ -103,6 +123,15 @@
 .annotation-collect .verse-list li:hover a {
   background-color: var(--color-primary);
   color: var(--color-white);
+}
+
+.annotation-collect .verse-list li a .chevron-icon {
+  width: 8px;
+  height: 11px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(/assets/images/chevron-right-white.png);
+  transition: 0.3s;
 }
 
 .annotation-collect .verse-list li strong {
@@ -165,8 +194,18 @@
 
   /* ST: 각주 리스트 */
 
-  .annotation-collect .verse-list {
+  .annotation-collect .verse-section {
     margin-top: 30px;
+  }
+
+  .annotation-collect .verse-section .info span {
+    padding-left: 18px;
+    font-size: 14px;
+    background-size: 13px;
+  }
+
+  .annotation-collect .verse-list {
+    margin-top: 6px;
     border-radius: 12px;
   }
 
@@ -188,11 +227,17 @@
   }
 
   .annotation-collect .verse-list li a {
-    width: 50px;
-    min-width: 50px;
+    gap: 6px;
+    width: 56px;
+    min-width: 56px;
     height: 30px;
     border-radius: 4px;
     font-size: 14px;
+  }
+
+  .annotation-collect .verse-list li a .chevron-icon {
+    width: 7px;
+    height: 9px;
   }
 
   .annotation-collect .verse-list li strong {
@@ -218,8 +263,14 @@
 
   /* ST: 각주 리스트 */
 
+  .annotation-collect .verse-section .info span {
+    padding-left: 16px;
+    font-size: 13px;
+    background-size: 12px;
+  }
+
   .annotation-collect .verse-list {
-    margin-top: 30px;
+    margin-top: 4px;
     border-radius: 8px;
   }
 
@@ -234,13 +285,20 @@
 
   .annotation-collect .verse-list li a {
     position: absolute;
-    top: 12px;
+    top: 13px;
     right: 16px;
-    width: 40px;
-    min-width: 40px;
-    height: 24px;
+    gap: 5px;
+    width: 50px;
+    min-width: 50px;
+    height: 28px;
     border-radius: 4px;
     font-size: 12px;
+  }
+
+  .annotation-collect .verse-list li a .chevron-icon {
+    margin-top: -2px;
+    width: 6px;
+    height: 8px;
   }
 
   .annotation-collect .verse-list li strong {
@@ -281,6 +339,11 @@ body.light {
 
   /* ST: 각주 리스트 */
 
+  .annotation-collect .verse-section .info span {
+    color: var(--color-theme-light-text);
+    background-image: url(/public/assets/images/info-ico-light.png);
+  }
+
   .annotation-collect .verse-list {
     border: 1px solid var(--color-theme-border);
     background-color: var(--color-white);
@@ -313,7 +376,6 @@ body.light {
   }
 
   .annotation-collect .verse-list li a {
-    /**/
     color: var(--color-black);
     background-color: var(--color-theme-box-bg);
     transition: 0.3s;
@@ -322,6 +384,14 @@ body.light {
   .annotation-collect .verse-list li:hover a {
     background-color: var(--color-primary);
     color: var(--color-white);
+  }
+
+  .annotation-collect .verse-list li a .chevron-icon {
+    background-image: url(/assets/images/chevron-right-black.png);
+  }
+
+  .annotation-collect .verse-list li:hover a .chevron-icon {
+    background-image: url(/assets/images/chevron-right-white.png);
   }
 
   .annotation-collect .verse-list li p {

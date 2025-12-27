@@ -100,7 +100,10 @@ export default function AnnotationCollect() {
             <p>{wlc_bible_eng[item.id - 1].verse}</p>
           </div>
         </div>
-        <Link to={`/wlc/${item.wlcNum}`}>{item.wlcNum} 문 </Link>
+        <Link to={`/wlc/${item.wlcNum}`}>
+          {item.wlcNum} 문
+          <span className="chevron-icon" aria-hidden />
+        </Link>
       </li>
     );
   });
@@ -186,10 +189,15 @@ export default function AnnotationCollect() {
             검색
           </button>
         </div>
-        <ul className="verse-list">
-          {verseRender}
-          {hasSearched && filteredList.length === 0 && noResult}
-        </ul>
+        <div className="verse-section">
+          <div className="info">
+            <span>문답 번호를 누르면 해당 문답 상세 페이지로 이동합니다.</span>
+          </div>
+          <ul className="verse-list">
+            {verseRender}
+            {hasSearched && filteredList.length === 0 && noResult}
+          </ul>
+        </div>
       </div>
       <div ref={observerRef} style={{ height: 1 }} />
     </div>
