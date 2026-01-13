@@ -35,16 +35,27 @@ export default function AnnotationCollect() {
         return String(korItem.wlcNum) === keyword;
       }
 
-      if (lang === 'kor') {
-        return (
-          korItem.bible.toLowerCase().includes(keyword) ||
-          korItem.verse.toLowerCase().includes(keyword)
-        );
-      } else {
-        return (
-          engItem.bible.toLowerCase().includes(keyword) ||
-          engItem.verse.toLowerCase().includes(keyword)
-        );
+      switch (lang) {
+        case 'kor':
+          return (
+            korItem.bible.toLowerCase().includes(keyword) ||
+            korItem.verse.toLowerCase().includes(keyword)
+          );
+
+        case 'eng':
+          return (
+            engItem.bible.toLowerCase().includes(keyword) ||
+            engItem.verse.toLowerCase().includes(keyword)
+          );
+
+        case 'both':
+        default:
+          return (
+            korItem.bible.toLowerCase().includes(keyword) ||
+            korItem.verse.toLowerCase().includes(keyword) ||
+            engItem.bible.toLowerCase().includes(keyword) ||
+            engItem.verse.toLowerCase().includes(keyword)
+          );
       }
     });
   }, [keyword, lang]);
