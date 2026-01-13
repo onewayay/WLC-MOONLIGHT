@@ -172,7 +172,7 @@ export default function AnnotationCollect() {
   useTitle(
     hasSearched
       ? `"${keyword}" 검색 결과 - 각주 모음 | WLC MOONLIGHT`
-      : '각주 모음 - WLC MOONLIGHT'
+      : '각주 모음 | WLC MOONLIGHT'
   );
   useMetaDescription(
     hasSearched
