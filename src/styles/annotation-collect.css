@@ -48,7 +48,7 @@
   font-size: 15px;
   font-weight: 200;
   color: var(--color-text-light-gray);
-  background-image: url(/public/assets/images/info-ico-dark.png);
+  background-image: url(/assets/images/info-ico-dark.png);
   background-repeat: no-repeat;
   background-position: 0 center;
   background-size: 15px;
@@ -341,7 +341,7 @@ body.light {
 
   .annotation-collect .verse-section .info span {
     color: var(--color-theme-light-text);
-    background-image: url(/public/assets/images/info-ico-light.png);
+    background-image: url(/assets/images/info-ico-light.png);
   }
 
   .annotation-collect .verse-list {
