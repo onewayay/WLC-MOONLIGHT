@@ -65,7 +65,7 @@ export default function WlcView() {
   const questionTitle = kor_data[qaNum].Q ?? '';
   useTitle(`대요리 문답 제 ${qaNum}문 - ${questionTitle} | WLC MOONLIGHT`);
   useMetaDescription(
-    `웨스트민스터 대요리문답 제 ${qaNum}문 "${questionTitle}"에 대한 질문과 답변, 그리고 관련 성경 구절을 제공합니다.`
+    `웨스트민스터 대요리문답 제 ${qaNum}문 "${questionTitle}"에 대한 질문과 답변, 그리고 관련 성경 구절을 제공합니다.`,
   );
   useCanonical(`https://wlcmoonlight.vercel.app/wlc/${qaNum}`);
 

@@ -53,6 +53,11 @@ export default function Header() {
     };
   }, [isMoMenuOpen]);
 
+  // theme 바뀔때마다 localStorage에 userTheme 값으로 저장
+  useEffect(() => {
+    localStorage.setItem('userTheme', theme);
+  }, [theme]);
+
   return (
     <>
       <header id="header">

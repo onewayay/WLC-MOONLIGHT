@@ -8,8 +8,17 @@ import { LangContext } from './context/LangContext';
 import { useTitle } from './hooks/useTitle';
 
 function App() {
-  const [theme, setTheme] = useState('dark'); // theme 상태
-  const [lang, setLang] = useState('kor'); // lang 상태
+  // localStorage 에서 불러온 userTheme 값
+  const userTheme = localStorage.getItem('userTheme');
+  console.log(userTheme);
+
+  // theme 상태
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('userTheme') ?? 'dark';
+  });
+
+  // lang 상태
+  const [lang, setLang] = useState('kor');
 
   useEffect(() => {
     document.body.classList.remove('dark', 'light');
