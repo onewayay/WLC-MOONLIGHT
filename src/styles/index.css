@@ -175,12 +175,13 @@ main {
   background-color: white;
 }
 
-/* 기본은 1440px이상의 Large PC */
-
-*:focus {
-  outline: 2px solid red;
+/* 탭 접근시 아웃라인 (textarea, input, select 뺐음)*/
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-light-border);
   outline-offset: 2px;
 }
+
+/* 기본은 1440px이상의 Large PC */
 
 /* PC */
 @media (max-width: 1439px) {
@@ -209,4 +210,8 @@ main {
 */
 
 body.light {
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
