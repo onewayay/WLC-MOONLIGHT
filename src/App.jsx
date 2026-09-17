@@ -6,15 +6,15 @@ import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
 import { LangContext } from './context/LangContext';
 import { useTitle } from './hooks/useTitle';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   // localStorage 에서 불러온 userTheme 값
   const userTheme = localStorage.getItem('userTheme');
-  console.log(userTheme);
 
   // theme 상태
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('userTheme') ?? 'dark';
+    return userTheme ?? 'dark';
   });
 
   // lang 상태
@@ -42,6 +42,7 @@ function App() {
 
   return (
     <>
+      <Analytics />
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <LangContext.Provider value={{ lang, setLang }}>
           <ScrollRestoration />
