@@ -10,7 +10,7 @@ import { LangContext } from '../context/LangContext';
 import { useTitle } from '../hooks/useTitle';
 import { useMetaDescription } from '../hooks/useMetaDescription';
 import { useCanonical } from '../hooks/useCanonical';
-import { arrayToSpeechText } from '../utils/arrayToSpeechText';
+import { arrayToSpeechTexts } from '../utils/arrayToSpeechTexts';
 import SpeakerMuteIcon from '../components/icons/SpeakerMuteIcon';
 import SpeakerIcon from '../components/icons/SpeakerIcon';
 
@@ -64,7 +64,7 @@ export default function WlcView() {
               onClick={() =>
                 isSpeaking(`kor-verse-${item.id}`)
                   ? handleStopSpeak()
-                  : handleStartSpeak(arrayToSpeechText(item.verse), 'ko-KR', `kor-verse-${item.id}`)
+                  : handleStartSpeak(arrayToSpeechTexts(item.verse), 'ko-KR', `kor-verse-${item.id}`)
               }
             >
               <div>{isSpeaking(`kor-verse-${item.id}`) ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
@@ -85,7 +85,7 @@ export default function WlcView() {
               onClick={() =>
                 isSpeaking(`eng-verse-${item.id}`)
                   ? handleStopSpeak()
-                  : handleStartSpeak(arrayToSpeechText(presentEngBible[idx]?.verse), 'en-US', `eng-verse-${item.id}`)
+                  : handleStartSpeak(arrayToSpeechTexts(presentEngBible[idx]?.verse), 'en-US', `eng-verse-${item.id}`)
               }
             >
               <div>{isSpeaking(`eng-verse-${item.id}`) ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
@@ -210,7 +210,9 @@ export default function WlcView() {
                   className="speak-box"
                   aria-pressed={isSpeaking(`kor-Q`)}
                   aria-label={isSpeaking(`kor-Q`) ? `${qaNum}문 한글 음성 멈추기` : `${qaNum}문 한글 음성 듣기`}
-                  onClick={() => (isSpeaking('kor-Q') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(kor_data[qaNum].Q), 'ko-KR', 'kor-Q'))}
+                  onClick={() =>
+                    isSpeaking('kor-Q') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechTexts(kor_data[qaNum].Q), 'ko-KR', 'kor-Q')
+                  }
                 >
                   <div>{isSpeaking('kor-Q') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
                 </button>
@@ -225,7 +227,9 @@ export default function WlcView() {
                   className="speak-box"
                   aria-pressed={isSpeaking(`kor-A`)}
                   aria-label={isSpeaking(`kor-A`) ? `${qaNum}답 한글 음성 멈추기` : `${qaNum}답 한글 음성 듣기`}
-                  onClick={() => (isSpeaking('kor-A') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(kor_data[qaNum].A), 'ko-KR', 'kor-A'))}
+                  onClick={() =>
+                    isSpeaking('kor-A') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechTexts(kor_data[qaNum].A), 'ko-KR', 'kor-A')
+                  }
                 >
                   <div>{isSpeaking('kor-A') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
                 </button>
@@ -242,7 +246,9 @@ export default function WlcView() {
                   className="speak-box"
                   aria-pressed={isSpeaking(`eng-Q`)}
                   aria-label={isSpeaking(`eng-Q`) ? `${qaNum}문 영문 음성 멈추기` : `${qaNum}문 영문 음성 듣기`}
-                  onClick={() => (isSpeaking('eng-Q') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(eng_data[qaNum].Q), 'en-US', 'eng-Q'))}
+                  onClick={() =>
+                    isSpeaking('eng-Q') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechTexts(eng_data[qaNum].Q), 'en-US', 'eng-Q')
+                  }
                 >
                   <div>{isSpeaking('eng-Q') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
                 </button>
@@ -257,7 +263,9 @@ export default function WlcView() {
                   className="speak-box"
                   aria-pressed={isSpeaking(`eng-A`)}
                   aria-label={isSpeaking(`eng-A`) ? `${qaNum}답 영문 음성 멈추기` : `${qaNum}답 영문 음성 듣기`}
-                  onClick={() => (isSpeaking('eng-A') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(eng_data[qaNum].A), 'en-US', 'eng-A'))}
+                  onClick={() =>
+                    isSpeaking('eng-A') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechTexts(eng_data[qaNum].A), 'en-US', 'eng-A')
+                  }
                 >
                   <div>{isSpeaking('eng-A') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
                 </button>

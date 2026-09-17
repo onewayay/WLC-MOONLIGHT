@@ -1,6 +1,6 @@
 // src/utils/arrayToSpeechText.js
 
-export function arrayToSpeechText(arr) {
+export function arrayToSpeechTexts(arr) {
   if (!Array.isArray(arr)) return arr ?? '';
 
   return arr
