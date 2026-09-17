@@ -50,7 +50,6 @@
 }
 
 /* ST: qna */
-
 .wlc-view .qna {
   margin-top: 40px;
   display: flex;
@@ -70,35 +69,6 @@
 
 .wlc-view .qna .answer {
   padding: 20px 0;
-}
-
-.wlc-view .qna .title-box {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.wlc-view .qna .title-box .speak-box {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  color: var(--color-text-light-gray);
-  cursor: pointer;
-}
-
-.wlc-view .qna .title-box .speak-box div {
-  position: relative;
-  width: 22px;
-  height: 22px;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.wlc-view .qna .title-box .speak-box div svg {
-  color: var(--color-white);
 }
 
 .wlc-view .qna strong {
@@ -152,6 +122,37 @@
 .wlc-view .footnote .verse-list li p {
   margin-top: 4px;
   color: var(--color-text-light-gray);
+}
+
+/* ST: speak-box */
+
+.wlc-view .title-box {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.wlc-view .title-box .speak-box {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--color-text-light-gray);
+  cursor: pointer;
+}
+
+.wlc-view .title-box .speak-box div {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wlc-view .title-box .speak-box div svg {
+  color: var(--color-white);
 }
 
 /*

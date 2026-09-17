@@ -22,7 +22,12 @@ export default function WlcView() {
   const { lang } = useContext(LangContext); // 언어 상태 컨텍스트
 
   const audioRef = useRef(null); // 오디오 객체 있는지 상태
+  const requestIdRef = useRef(0); // 요청별 번호표
+  const debounceTimerRef = useRef(null); // 디바운싱 상태
   const [speakingKey, setSpeakingKey] = useState(null); // 어떤 부분이 재생 중인지 상태
+  const [loadingKey, setLoadingKey] = useState(null); // 어떤 부분 요청이 들어왔는지 상태
+
+  const isSpeaking = (key) => loadingKey === key || speakingKey === key;
 
   // 현재 문답에 알맞는 한글 각주
   const presentKorBible = wlc_bible_kor.filter((item) => {
@@ -47,60 +52,116 @@ export default function WlcView() {
     return (
       <li key={idx}>
         <div className={`kor-verse ${lang === 'kor' ? 'active' : ''}`}>
-          <strong>
-            [{item.num}] {item.bible}
-          </strong>
+          <div className="title-box">
+            <strong>
+              [{item.num}] {item.bible}
+            </strong>
+            <button
+              type="button"
+              className="speak-box"
+              aria-pressed={isSpeaking(`kor-verse-${item.id}`)}
+              aria-label={isSpeaking(`kor-verse-${item.id}`) ? `${item.num}번 각주 한글 음성 멈추기` : `${item.num}번 각주 한글 음성 듣기`}
+              onClick={() =>
+                isSpeaking(`kor-verse-${item.id}`)
+                  ? handleStopSpeak()
+                  : handleStartSpeak(arrayToSpeechText(item.verse), 'ko-KR', `kor-verse-${item.id}`)
+              }
+            >
+              <div>{isSpeaking(`kor-verse-${item.id}`) ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
+            </button>
+          </div>
           <p>{item.verse}</p>
         </div>
         <div className={`eng-verse ${lang === 'kor' ? '' : 'active'}`}>
-          <strong>
-            [{presentEngBible[idx]?.num}] {presentEngBible[idx]?.bible}
-          </strong>
+          <div className="title-box">
+            <strong>
+              [{presentEngBible[idx]?.num}] {presentEngBible[idx]?.bible}
+            </strong>
+            <button
+              type="button"
+              className="speak-box"
+              aria-pressed={isSpeaking(`eng-verse-${item.id}`)}
+              aria-label={isSpeaking(`eng-verse-${item.id}`) ? `${item.num}번 각주 음성 멈추기` : `${item.num}번 각주 음성 듣기`}
+              onClick={() =>
+                isSpeaking(`eng-verse-${item.id}`)
+                  ? handleStopSpeak()
+                  : handleStartSpeak(arrayToSpeechText(presentEngBible[idx]?.verse), 'en-US', `eng-verse-${item.id}`)
+              }
+            >
+              <div>{isSpeaking(`eng-verse-${item.id}`) ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
+            </button>
+          </div>
           <p>{presentEngBible[idx]?.verse}</p>
         </div>
       </li>
     );
   });
 
-  const speakText = async (text, lang, key) => {
-    // 재생중에 같은 부분 '멈추기'클릭한 경우 -> 단순 멈춤
-    if (speakingKey === key) {
-      audioRef.current?.pause();
-      audioRef.current = null;
-      setSpeakingKey(null);
-      return;
+  // 음성 요청 전체 멈춤 및 상태 비움
+  const stopAll = () => {
+    requestIdRef.current += 1; // 진행 중이던 응답을 무효화
+    audioRef.current?.pause(); // 오디오 멈춤
+    audioRef.current = null; // 오디오 객체 비움
+    setSpeakingKey(null); // 실행중인 부분 키 비움
+    setLoadingKey(null); // 요청한 부분 키 비움
+  };
+
+  const fetchSpeakText = async (text, lang, key) => {
+    stopAll(); // 일단 다 멈춤 + 클리어
+    const myRequestId = ++requestIdRef.current;
+    setLoadingKey(key);
+
+    //새로운 오디오 요청 및 재생 요청
+    try {
+      const res = await fetch(`/api/tts`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, lang }),
+      });
+
+      const data = await res.json();
+
+      if (myRequestId !== requestIdRef.current) return; // 낡은 요청 무시
+
+      if (!data.audioContent) {
+        console.error('오디오 생성 실패:', data);
+        setLoadingKey(null);
+        return;
+      }
+
+      const audio = new Audio(`data:audio/mp3;base64,${data.audioContent}`);
+      audioRef.current = audio; // 새로운 오디오를 상태로 관리
+      setLoadingKey(null);
+      setSpeakingKey(key); // 새로운 재생 부분 키 상태로 관리
+
+      audio.onended = () => {
+        setSpeakingKey(null);
+        audioRef.current = null;
+      };
+
+      audio.onerror = () => {
+        console.error('오디오 재생 에러');
+        setSpeakingKey(null);
+        audioRef.current = null;
+      };
+
+      audio.play();
+    } catch (err) {
+      console.error('오디오 생성 실패:', err);
+      setLoadingKey(null);
     }
+  };
 
-    // 재생중에 다른 부분 '듣기' 클릭한 경우 -> 일단 멈춤
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
+  const handleStartSpeak = (text, lang, key) => {
+    clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = setTimeout(() => {
+      fetchSpeakText(text, lang, key);
+    }, 300);
+  };
 
-    // 새로운 오디오 요청 및 재생
-    const res = await fetch(`/api/tts`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, lang }),
-    });
-
-    const data = await res.json();
-
-    if (!data.audioContent) {
-      console.error('오디오 생성 실패:', data);
-      return;
-    }
-
-    const audio = new Audio(`data:audio/mp3;base64,${data.audioContent}`);
-    audioRef.current = audio; // 새로운 오디오를 상태로 관리
-    setSpeakingKey(key); // 새로운 재생 부분 키 상태로 관리
-
-    audio.onended = () => {
-      setSpeakingKey(null);
-      audioRef.current = null;
-    };
-
-    audio.play();
+  const handleStopSpeak = () => {
+    clearTimeout(debounceTimerRef.current);
+    stopAll();
   };
 
   useEffect(() => {
@@ -108,12 +169,11 @@ export default function WlcView() {
     addRecentView(qaNum);
   }, [qaNum]);
 
-  // qaNum 바뀔 때 audio 객체 비워주기
+  // qaNum 바뀔 때 allStop으로 멈추고 모든 상태 비워주기
   useEffect(() => {
     return () => {
-      audioRef.current?.pause();
-      audioRef.current = null;
-      setSpeakingKey(null);
+      clearTimeout(debounceTimerRef.current);
+      stopAll();
     };
   }, [qaNum]);
 
@@ -145,26 +205,30 @@ export default function WlcView() {
             <div className="question">
               <div className="title-box">
                 <strong>질문</strong>
-                <div
+                <button
+                  type="button"
                   className="speak-box"
-                  aria-label={speakingKey ? '음성 멈추기' : '음성 듣기'}
-                  onClick={() => speakText(arrayToSpeechText(kor_data[qaNum].Q), 'ko-KR', 'kor-Q')}
+                  aria-pressed={isSpeaking(`kor-Q`)}
+                  aria-label={isSpeaking(`kor-Q`) ? `${qaNum}문 한글 음성 멈추기` : `${qaNum}문 한글 음성 듣기`}
+                  onClick={() => (isSpeaking('kor-Q') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(kor_data[qaNum].Q), 'ko-KR', 'kor-Q'))}
                 >
-                  <div>{speakingKey === 'kor-Q' ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
-                </div>
+                  <div>{isSpeaking('kor-Q') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
+                </button>
               </div>
               <p>{kor_data[qaNum].Q}</p>
             </div>
             <div className="answer">
               <div className="title-box">
                 <strong>답변</strong>
-                <div
+                <button
+                  type="button"
                   className="speak-box"
-                  aria-label={speakingKey ? '음성 멈추기' : '음성 듣기'}
-                  onClick={() => speakText(arrayToSpeechText(kor_data[qaNum].A), 'ko-KR', 'kor-A')}
+                  aria-pressed={isSpeaking(`kor-A`)}
+                  aria-label={isSpeaking(`kor-A`) ? `${qaNum}답 한글 음성 멈추기` : `${qaNum}답 한글 음성 듣기`}
+                  onClick={() => (isSpeaking('kor-A') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(kor_data[qaNum].A), 'ko-KR', 'kor-A'))}
                 >
-                  <div>{speakingKey === 'kor-A' ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
-                </div>
+                  <div>{isSpeaking('kor-A') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
+                </button>
               </div>
               <pre>{kor_data[qaNum].A}</pre>
             </div>
@@ -173,26 +237,30 @@ export default function WlcView() {
             <div className="question">
               <div className="title-box">
                 <strong>Question</strong>
-                <div
+                <button
+                  type="button"
                   className="speak-box"
-                  aria-label={speakingKey ? '음성 멈추기' : '음성 듣기'}
-                  onClick={() => speakText(arrayToSpeechText(eng_data[qaNum].Q), 'en-US', 'eng-Q')}
+                  aria-pressed={isSpeaking(`eng-Q`)}
+                  aria-label={isSpeaking(`eng-Q`) ? `${qaNum}문 영문 음성 멈추기` : `${qaNum}문 영문 음성 듣기`}
+                  onClick={() => (isSpeaking('eng-Q') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(eng_data[qaNum].Q), 'en-US', 'eng-Q'))}
                 >
-                  <div>{speakingKey === 'eng-Q' ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
-                </div>
+                  <div>{isSpeaking('eng-Q') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
+                </button>
               </div>
               <p>{eng_data[qaNum].Q}</p>
             </div>
             <div className="answer">
               <div className="title-box">
                 <strong>Answer</strong>
-                <div
+                <button
+                  type="button"
                   className="speak-box"
-                  aria-label={speakingKey ? '음성 멈추기' : '음성 듣기'}
-                  onClick={() => speakText(arrayToSpeechText(eng_data[qaNum].A), 'en-US', 'eng-A')}
+                  aria-pressed={isSpeaking(`eng-A`)}
+                  aria-label={isSpeaking(`eng-A`) ? `${qaNum}답 영문 음성 멈추기` : `${qaNum}답 영문 음성 듣기`}
+                  onClick={() => (isSpeaking('eng-A') ? handleStopSpeak() : handleStartSpeak(arrayToSpeechText(eng_data[qaNum].A), 'en-US', 'eng-A'))}
                 >
-                  <div>{speakingKey === 'eng-A' ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
-                </div>
+                  <div>{isSpeaking('eng-A') ? <SpeakerMuteIcon /> : <SpeakerIcon />}</div>
+                </button>
               </div>
               <pre>{eng_data[qaNum].A}</pre>
             </div>
