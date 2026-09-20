@@ -108,7 +108,7 @@
 /* ST: 모바일 메뉴 */
 
 #header .mobile-menu {
-  display: flex;
+  display: none;
   position: fixed;
   top: 70px;
   right: 20px;
@@ -121,7 +121,6 @@
 }
 
 #header .mobile-menu.open {
-  display: flex;
   pointer-events: auto;
 }
 
@@ -285,6 +284,10 @@
   #header .nav .theme-btn {
     width: 18px;
     height: 18px;
+  }
+
+  #header .mobile-menu {
+    display: flex;
   }
 
   #header .nav .mobile-menu-btn {

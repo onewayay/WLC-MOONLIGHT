@@ -18,9 +18,7 @@ export default function Header() {
     lang === 'kor' ? setLang('eng') : setLang('kor');
   };
 
-  const showLangBtn =
-    (location.pathname.startsWith('/wlc/') && location.pathname !== '/wlc') ||
-    location.pathname === '/annotationcollect';
+  const showLangBtn = (location.pathname.startsWith('/wlc/') && location.pathname !== '/wlc') || location.pathname === '/annotationcollect';
 
   // theme 상태 변경 이벤트
   const changeTheme = () => {
@@ -79,22 +77,11 @@ export default function Header() {
               각주 모음
             </NavLink>
             {showLangBtn && (
-              <button
-                type="button"
-                className="lang-btn"
-                onClick={changeLang}
-                aria-label="언어 변경"
-              >
-                <span className={lang === 'kor' ? 'active' : ''}>한글</span> /
-                <span className={lang === 'kor' ? '' : 'active'}>ENG</span>
+              <button type="button" className="lang-btn" onClick={changeLang} aria-label="언어 변경">
+                <span className={lang === 'kor' ? 'active' : ''}>한글</span> /<span className={lang === 'kor' ? '' : 'active'}>ENG</span>
               </button>
             )}
-            <button
-              type="button"
-              className={`theme-btn ${theme}`}
-              onClick={changeTheme}
-              aria-label="색상 테마 변경"
-            ></button>
+            <button type="button" className={`theme-btn ${theme}`} onClick={changeTheme} aria-label="색상 테마 변경"></button>
             <button
               type="button"
               className="mobile-menu-btn"
@@ -109,12 +96,7 @@ export default function Header() {
             </button>
           </nav>
         </div>
-        <div
-          id="mobile-menu"
-          className={`mobile-menu ${isMoMenuOpen ? 'open' : ''}`}
-          aria-hidden={!isMoMenuOpen}
-          role="navigation"
-        >
+        <div id="mobile-menu" className={`mobile-menu ${isMoMenuOpen ? 'open' : ''}`} aria-hidden={!isMoMenuOpen} role="navigation">
           <Link to="/" className="nav-link" onClick={closeMoMenu}>
             홈으로
             <div></div>
@@ -123,19 +105,11 @@ export default function Header() {
             문답 보기
             <div></div>
           </Link>
-          <Link
-            to="/annotationcollect"
-            className="nav-link"
-            onClick={closeMoMenu}
-          >
+          <Link to="/annotationcollect" className="nav-link" onClick={closeMoMenu}>
             각주 모음
             <div></div>
           </Link>
-          <button
-            type="button"
-            onClick={closeMoMenu}
-            aria-label="모바일 메뉴 닫기"
-          >
+          <button type="button" onClick={closeMoMenu} aria-label="모바일 메뉴 닫기">
             <span></span>
             <span></span>
           </button>
