@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import Footer from './components/layout/Footer';
-import Header from './components/layout/Header';
-import './styles/index.css';
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
+import '@/styles/index.css';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
-import { ThemeContext } from './context/ThemeContext';
-import { LangContext } from './context/LangContext';
-import { useTitle } from './hooks/useTitle';
+import { ThemeContext } from '@/context/ThemeContext';
+import { LangContext } from '@/context/LangContext';
+import { useTitle } from '@/hooks/useTitle';
 import { Analytics } from '@vercel/analytics/react';
 
 function App() {

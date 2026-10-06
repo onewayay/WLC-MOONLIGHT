@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../../styles/menu.css';
+import '@/styles/menu.css';
 
 export default function Menu({ qaNum, setQaNum, isTabOpen, closeTabMenu }) {
   console.log(qaNum, setQaNum);
@@ -45,12 +45,7 @@ export default function Menu({ qaNum, setQaNum, isTabOpen, closeTabMenu }) {
     };
 
     return (
-      <li
-        key={i}
-        className={`${isActive ? 'active' : ''} ${
-          minNum <= qaNum && qaNum <= maxNum ? 'active' : ''
-        }`}
-      >
+      <li key={i} className={`${isActive ? 'active' : ''} ${minNum <= qaNum && qaNum <= maxNum ? 'active' : ''}`}>
         <button type="button" onClick={spreadList}>
           {minNum}문~{maxNum}문
         </button>
@@ -64,10 +59,7 @@ export default function Menu({ qaNum, setQaNum, isTabOpen, closeTabMenu }) {
       <div className={`menu ${isTabOpen ? 'active' : ''}`}>
         <ul>{tenBlock}</ul>
       </div>
-      <div
-        className={`dim ${isTabOpen ? 'active' : ''}`}
-        onClick={closeTabMenu}
-      ></div>
+      <div className={`dim ${isTabOpen ? 'active' : ''}`} onClick={closeTabMenu}></div>
     </>
   );
 }

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import '../../styles/header.css';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { ThemeContext } from '../../context/ThemeContext';
-import { LangContext } from '../../context/LangContext';
+import '@/styles/header.css';
+import { Link, NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import { ThemeContext } from '@/context/ThemeContext';
+import { LangContext } from '@/context/LangContext';
 
 export default function Header() {
   const location = useLocation();
@@ -13,11 +13,17 @@ export default function Header() {
 
   const [isMoMenuOpen, setIsMoMenuOpen] = useState(false); // 모바일 메뉴 열림 상태
 
-  // 언어 상태 교체 함수
-  const changeLang = () => {
-    lang === 'kor' ? setLang('eng') : setLang('kor');
-  };
+  const [searchParams, setSearchParams] = useSearchParams(); // 검색어 쿼리
 
+  // 언어 상태 교체 함수
+  // 언어가 바뀌면 검색 기준도 달라지므로 검색어 초기화
+  const changeLang = () => {
+    setLang(lang === 'kor' ? 'eng' : 'kor');
+
+    if (searchParams.has('q')) {
+      setSearchParams({}, { replace: true });
+    }
+  };
   const showLangBtn = (location.pathname.startsWith('/wlc/') && location.pathname !== '/wlc') || location.pathname === '/annotationcollect';
 
   // theme 상태 변경 이벤트

@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Home from './pages/Home';
-import AnnotationCollect from './pages/AnnotationCollect';
-import NotFound from './pages/NotFound';
-import WlcList from './pages/WlcList';
-import WlcView from './pages/WlcVIew';
+
+import NotFound from '@/pages/NotFound';
+import Home from '@/pages/home/Home';
+import WlcList from '@/pages/wlclist/WlcList';
+import WlcView from '@/pages/wlcview/WlcView';
+import AnnotationCollect from '@/pages/annotation/AnnotationCollect';
 
 const router = createBrowserRouter([
   {

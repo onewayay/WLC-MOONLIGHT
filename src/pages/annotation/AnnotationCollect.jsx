@@ -1,12 +1,13 @@
-import wlc_bible_kor from '../assets/data/wlc_bible_kor_v2.json';
-import wlc_bible_eng from '../assets/data/wlc_bible_eng_v2.json';
-import '../styles/annotation-collect.css';
+import wlc_bible_kor from '@/assets/data/wlc_bible_kor_v2.json';
+import wlc_bible_eng from '@/assets/data/wlc_bible_eng_v2.json';
+import '@/styles/annotation-collect.css';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { LangContext } from '../context/LangContext';
-import { useTitle } from '../hooks/useTitle';
-import { useMetaDescription } from '../hooks/useMetaDescription';
-import { useCanonical } from '../hooks/useCanonical';
+import { LangContext } from '@/context/LangContext';
+import { useTitle } from '@/hooks/useTitle';
+import { useMetaDescription } from '@/hooks/useMetaDescription';
+import { useCanonical } from '@/hooks/useCanonical';
+import AnnotationSearch from '@/pages/annotation/components/AnnotationSearch';
 
 export default function AnnotationCollect() {
   const [searchParams, setSearchParams] = useSearchParams(); // 검색어 쿼리
@@ -14,8 +15,6 @@ export default function AnnotationCollect() {
   const { lang } = useContext(LangContext); // 언어 상태 컨텍스트
 
   const [visibleCount, setVisibleCount] = useState(20); // 현재 보여질 문답 갯수 상태
-
-  const [input, setInput] = useState(''); // 검색 input value 상태
 
   // 현재 URL에서 가져온 검색어(q)
   const keyword = searchParams.get('q')?.trim().toLowerCase() ?? '';
@@ -38,16 +37,10 @@ export default function AnnotationCollect() {
 
       switch (lang) {
         case 'kor':
-          return (
-            korItem.bible.toLowerCase().includes(keyword) ||
-            korItem.verse.toLowerCase().includes(keyword)
-          );
+          return korItem.bible.toLowerCase().includes(keyword) || korItem.verse.toLowerCase().includes(keyword);
 
         case 'eng':
-          return (
-            engItem.bible.toLowerCase().includes(keyword) ||
-            engItem.verse.toLowerCase().includes(keyword)
-          );
+          return engItem.bible.toLowerCase().includes(keyword) || engItem.verse.toLowerCase().includes(keyword);
 
         case 'both':
         default:
@@ -60,12 +53,6 @@ export default function AnnotationCollect() {
       }
     });
   }, [keyword, lang]);
-
-  useEffect(() => {
-    setInput('');
-    setSearchParams({});
-    setVisibleCount(20);
-  }, [lang]);
 
   // 화면 맨 아래에서 스크롤이 아래로 내려왔는지 감지하는 역할
   const observerRef = useRef(null);
@@ -87,7 +74,7 @@ export default function AnnotationCollect() {
       },
       // thredshold: 얼마나 보여야 콜백을 실행할지. 0~1의 값. 1은 100% 화면에 들어왔을 때 실행
       // rootMargin: 지정된 값만큼 이전에 미리 감지해서 콜백 실행
-      { threshold: 0, rootMargin: '200px' }
+      { threshold: 0, rootMargin: '200px' },
     );
 
     observer.observe(observerRef.current); // observerRef를 감지 대상으로 설정
@@ -120,40 +107,8 @@ export default function AnnotationCollect() {
     );
   });
 
-  // input 입력시 input 상태 변하는 함수
-  const onChageInput = (e) => {
-    setInput(e.currentTarget.value);
-  };
-
-  // 검색 버튼 클릭 이벤트 함수
-  // 검색어를 URL(query string)에 반영, 무한스크롤 노출 개수를 초기화
-  const onClickSearch = () => {
-    const keyword = input.trim().toLowerCase();
-
-    setVisibleCount(20);
-
-    if (!keyword) {
-      setSearchParams({});
-      return;
-    }
-
-    setSearchParams({ q: keyword });
-  };
-
-  const onKeyDownSearch = (e) => {
-    if (e.key === 'Enter') {
-      onClickSearch();
-    }
-  };
-
-  // 마운트 이후에 keyword값을 input value로 설정해주기(뒤로 왔을때도 검색했던 내용 input에 남아 있도록)
-  useEffect(() => {
-    setInput(keyword);
-  }, [keyword]);
-
   // noResult에서 전체 문답 보기 버튼 클릭 이벤트. 전체 상태 초기화 해줌
   const onResetSearch = () => {
-    setInput('');
     setVisibleCount(20);
     setSearchParams({});
   };
@@ -170,15 +125,11 @@ export default function AnnotationCollect() {
   );
 
   // title 및 meta description 설정
-  useTitle(
-    hasSearched
-      ? `"${keyword}" 검색 결과 - 각주 모음 | WLC MOONLIGHT`
-      : '각주 모음 | WLC MOONLIGHT'
-  );
+  useTitle(hasSearched ? `"${keyword}" 검색 결과 - 각주 모음 | WLC MOONLIGHT` : '각주 모음 | WLC MOONLIGHT');
   useMetaDescription(
     hasSearched
       ? `"${keyword}"와(과) 관련된 성경 구절 검색 결과입니다. 웨스트민스터 대요리문답에 인용된 말씀을 확인해 보세요.`
-      : '웨스트민스터 대요리문답에 인용된 모든 성경 구절을 한곳에 모아 제공하며, 각 문답과 연결된 말씀을 쉽게 확인할 수 있습니다.'
+      : '웨스트민스터 대요리문답에 인용된 모든 성경 구절을 한곳에 모아 제공하며, 각 문답과 연결된 말씀을 쉽게 확인할 수 있습니다.',
   );
   useCanonical('https://wlcmoonlight.vercel.app/annotation');
 
@@ -189,19 +140,7 @@ export default function AnnotationCollect() {
           <h2>각주 모음</h2>
           <p>웨스트민스터 대요리 문답에 인용된 모든 성경 구절을 확인하세요.</p>
         </div>
-        <div className="search-area">
-          <input
-            type="search"
-            placeholder="키워드 및 번호로 문답 검색"
-            aria-label="검색어를 통한 각주 말씀 검색"
-            value={input}
-            onChange={onChageInput}
-            onKeyDown={onKeyDownSearch}
-          />
-          <button type="button" onClick={onClickSearch}>
-            검색
-          </button>
-        </div>
+        <AnnotationSearch keyword={keyword} setVisibleCount={setVisibleCount} setSearchParams={setSearchParams} />
         <div className="verse-section">
           <div className="info">
             <span>문답 번호를 누르면 해당 문답 상세 페이지로 이동합니다.</span>
